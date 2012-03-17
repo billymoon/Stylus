@@ -1,0 +1,11 @@
+{
+  "cmd": ["stylus", "$file"],
+  "file_regex": ".",
+  "selector": "source.stylus",
+
+  "osx":
+  {
+    "path": "/usr/local/bin:$PATH"
+  }
+
+}
