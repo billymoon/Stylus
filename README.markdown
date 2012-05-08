@@ -8,7 +8,7 @@ Build system and syntax hi-lighting for Stylus language
 
 *It has been confirmed as working on ubuntu 11.10, so I assume it should work on other flavors, but I have not tested any others*
 
-*It has been forked and had windows support added, but has not been tested extensively. It is expected to work on Windows 7 and Vista, but there seems to be issues with XP that have not been fully explored.*
+*It is working on windows, but there is an issue if there are unicode characters in the path variable - this is expected to be a sublime-text issue and has been reported*
 
 **It works for me on OSX because I have installed Stylus (via npm) and have the `stylus` binary in my path**
 
