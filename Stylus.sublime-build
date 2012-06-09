@@ -6,6 +6,10 @@
   "osx":
   {
     "path": "/usr/local/bin:$PATH"
-  }
+  },
 
+  "windows":
+  {
+    "cmd": ["stylus.cmd", "$file"]
+  }
 }

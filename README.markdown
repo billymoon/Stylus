@@ -6,11 +6,11 @@ Build system and syntax hi-lighting for Stylus language
 
 ## Limitations
 
-**Not tested on windows (or linux, but works on OSX, and assume ok), I don't expect the build to work without modification**
-*Please will a windows user fork this project, and get it working on windows*
-*Please will a linux user let me know if the build works for them*
+*It has been confirmed as working on ubuntu 11.10, so I assume it should work on other flavors, but I have not tested any others*
 
-**It works for me because I have installed Stylus (via npm) and have it in my path**
+*It is working on windows, but there is an issue if there are unicode characters in the path variable - this is expected to be a sublime-text issue and has been reported*
+
+**It works for me on OSX because I have installed Stylus (via npm) and have the `stylus` binary in my path**
 
 ## Install
 
