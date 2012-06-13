@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>name</key>
 	<string>Comments</string>
 	<key>scope</key>
-	<string>source.styl, source.stylus</string>
+	<string>source.stylus</string>
 	<key>settings</key>
 	<dict>
 		<key>shellVariables</key>
@@ -31,6 +31,6 @@
 		</array>
 	</dict>
 	<key>uuid</key>
-	<string>60519324-6A3A-4382-9E0B-546993A3869B</string>
+	<string>7EC85265-178C-4ECC-AAE2-4EEF4AFF8872</string>
 </dict>
 </plist>
