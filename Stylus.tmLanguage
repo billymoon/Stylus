@@ -59,7 +59,7 @@
 			<key>match</key>
 			<string>^ *(&amp;|)</string>
 			<key>name</key>
-			<string>variable.language.stylus</string>
+			<string>entity.language.stylus</string>
 		</dict>
 		<dict>
 			<key>match</key>
