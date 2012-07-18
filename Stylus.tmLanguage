@@ -155,7 +155,12 @@
 			<key>name</key>
 			<string>keyword.control.stylus</string>
 		</dict>
-
+        <dict>
+            <key>match</key>
+            <string>(-webkit-|-moz\-|-ms-|-o-)</string>
+            <key>name</key>
+            <string>meta.vendor-prefix.stylus</string>
+        </dict>
 		<dict>
 			<key>match</key>
 			<string>((?:!|~|\+|-|(?:\*)?\*|\/|%|(?:\.)\.\.|&lt;|&gt;|(?:=|:|\?|\+|-|\*|\/|%|&lt;|&gt;)?=|!=)|\b(?:in|is(?:nt)?|not)\b)</string>
