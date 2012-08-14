@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>${1:filter} unquote(${2:'progid:DXImageTransform.Microsoft.BasicImage(rotation=1)'})
+</string>
+	<key>name</key>
+	<string>unquote</string>
+	<key>scope</key>
+	<string>source.stylus</string>
+	<key>tabTrigger</key>
+	<string>unq</string>
+	<key>uuid</key>
+	<string>A012A81B-92D7-4EF4-B510-BD0E0B5359F4</string>
+</dict>
+</plist>
