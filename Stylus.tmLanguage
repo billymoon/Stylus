@@ -51,7 +51,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(^[-a-zA-Z_][-\w]*)?(\()</string>
+			<string>(^[-a-zA-Z_][-\w]*)?(?=\()</string>
 			<key>name</key>
 			<string>meta.function.stylus</string>
 		</dict>
@@ -83,15 +83,33 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(.*)(?=\s*=)</string>
+			<string>\$?\b([\$\w\-]+)(?=\s*[:\?]?=)</string>
 			<key>name</key>
-			<string>variable.language.stylus</string>
+			<string>variable.assignment.stylus</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>@([-\w]+)</string>
-			<key>name</key>
-			<string>keyword.stylus</string>
+			<string>^\s*(\@[-\w]+)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.at-rule.stylus</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(\@)(?=[-\w])</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.punctuation.property.stylus</string>
+				</dict>
+			</dict>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -213,13 +231,19 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(\b|\s)(!important|for|in|return|true|false|null|if|else|unless|return)\b</string>
+			<string>\b(true|false|defined|null)\b</string>
+			<key>name</key>
+			<string>constant.language.stylus</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(\b|\s)(!important|for|in|return|if|else|unless|return)\b</string>
 			<key>name</key>
 			<string>keyword.control.stylus</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>((?:!|~|\+|-|(?:\*)?\*|\/|%|(?:\.)\.\.|&lt;|&gt;|(?:=|:|\?|\+|-|\*|\/|%|&lt;|&gt;)?=|!=)|\b(?:in|is(?:nt)?|not)\b)</string>
+			<string>((?:\?|!|~|\+|-|(?:\*)?\*|\/|%|(?:\.)\.\.|&lt;|&gt;|(?:=|:|\?|\+|-|\*|\/|%|&lt;|&gt;)?=|!=)|\b(?:in|is(?:nt)?|not)\b)</string>
 			<key>name</key>
 			<string>keyword.operator.stylus</string>
 		</dict>
@@ -305,7 +329,13 @@
 			<key>match</key>
 			<string>\{|\}</string>
 			<key>name</key>
-			<string>punctuation.section.property-list.end.stylus</string>
+			<string>meta.brace.curly</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\(|\)</string>
+			<key>name</key>
+			<string>meta.brace.round</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
