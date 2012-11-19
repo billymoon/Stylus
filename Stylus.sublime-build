@@ -8,8 +8,25 @@
     "path": "/usr/local/bin:$PATH"
   },
 
+  "linux":
+  {
+    "path": "/usr/local/bin:$PATH"
+  },
+
   "windows":
   {
     "cmd": ["stylus.cmd", "$file"]
-  }
+  },
+
+  "variants": [
+    {
+      "name": "compress",
+      "cmd": ["stylus", "-c", "$file"],
+      
+      "windows":
+      {
+        "cmd": ["stylus.cmd", "-c", "$file"]
+      }
+    }
+  ]
 }
