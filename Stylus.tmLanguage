@@ -182,7 +182,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>([\w-]+)([\^\*\~\|\$]=)?([^\]]*)(?=\])</string>
+					<string>([\w-]+)([\^\*\~\|\$]?=)?([^\]]*)(?=\])</string>
 				</dict>
 			</array>
 		</dict>
