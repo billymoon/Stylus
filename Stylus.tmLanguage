@@ -69,7 +69,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>^ *&amp;</string>
+			<string>^\s*&amp;</string>
 			<key>name</key>
 			<string>entity.language.stylus</string>
 		</dict>
@@ -206,7 +206,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\b(vertical-align)\s*(:)?\s*(top|bottom)</string>
+			<string>\b(vertical-align|float|clear)\s*(:)?\s*(top|bottom|left|right)</string>
 			<key>name</key>
 			<string></string>
 		</dict>
