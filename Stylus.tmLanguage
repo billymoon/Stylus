@@ -21,7 +21,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:^[ \t]*)(\/\/).*$\n?</string>
+			<string>^\s*(\/\/).*$</string>
 			<key>name</key>
 			<string>comment.line.stylus</string>
 		</dict>
