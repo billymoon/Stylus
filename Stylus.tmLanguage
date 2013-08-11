@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -47,13 +47,11 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.stylus</string>
+					<string>meta.function-call.stylus</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(^[-a-zA-Z_][-\w]*)?(?=\()</string>
-			<key>name</key>
-			<string>meta.function.stylus</string>
+			<string>\b([-a-zA-Z_][-\w]*)?(?=\()</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -88,8 +86,6 @@
 			<string>variable.assignment.stylus</string>
 		</dict>
 		<dict>
-			<key>match</key>
-			<string>^\s*(\@[-\w]+)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -98,10 +94,10 @@
 					<string>keyword.at-rule.stylus</string>
 				</dict>
 			</dict>
+			<key>match</key>
+			<string>^\s*(\@[-\w]+)</string>
 		</dict>
 		<dict>
-			<key>match</key>
-			<string>(\@)(?=[-\w])</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -110,6 +106,8 @@
 					<string>variable.punctuation.property.stylus</string>
 				</dict>
 			</dict>
+			<key>match</key>
+			<string>(\@)(?=[-\w])</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -138,6 +136,103 @@
 			<string>(:)\b(active|hover|focus|target|link|any-link|local-link|visited|scope|current|past|future|dir|lang|enabled|disabled|checked|indeterminate|default|valid|invalid|in-range|out-of-range|required|optional|read-only|read-write|root|first-child|last-child|only-child|nth-child|nth-last-child|first-of-type|last-of-type|nth-of-type|nth-last-of-type|only-of-type|nth-match|nth-last-match|empty|not|column|nth-column|nth-last-column)\b</string>
 			<key>name</key>
 			<string>entity.other.attribute-name.pseudo-class.stylus</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\[</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.brace.square</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\]</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.brace.square</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>entity.other.attribute.stylus</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.stylus</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>meta.delimiter.stylus</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>string.quoted.stylus</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>([\w-]+)(=)?([^\]]*)(?=\])</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.property-name.stylus</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>meta.delimiter.stylus</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant.property-value.stylus</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\b(vertical-align)\s*(:)?\s*(top|bottom)</string>
+			<key>name</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.property-name.stylus</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>meta.delimiter.stylus</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant.property-value.stylus</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\b(display)\s*(:)?\s*(table(-cell|-row)?)</string>
+			<key>name</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -324,6 +419,12 @@
 			<string>[,:]</string>
 			<key>name</key>
 			<string>meta.delimiter.stylus</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\[|\]</string>
+			<key>name</key>
+			<string>meta.brace.square</string>
 		</dict>
 		<dict>
 			<key>match</key>
