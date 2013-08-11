@@ -206,7 +206,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\b(vertical-align|float|clear)\s*(:)?\s*(top|bottom|left|right)</string>
+			<string>\b(vertical-align|float|clear|text-align)\s*(:)?\s*(top|bottom|left|right)</string>
 			<key>name</key>
 			<string></string>
 		</dict>
