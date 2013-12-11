@@ -1,8 +1,8 @@
 # Stylus Package for Sublime Editor 2
 
-An extension for Sublime Text 2.
+An extension for Sublime Text 2. Build system and syntax hi-lighting for Stylus language
 
-Build system and syntax hi-lighting for Stylus language
+**alternatively, try [grassator's stylus package](https://github.com/grassator/stylus-sublime) which also supports ST3 - and bills itself as "a better alternative to a similar package by billymoon" ,~)**
 
 ## Limitations
 
