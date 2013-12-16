@@ -34,3 +34,7 @@ Please use [GitHub Issue Tracker](https://github.com/billymoon/Stylus/issues) to
 If you want to help developing this package you will need [grunt](http://gruntjs.com/) installed to be able to recompile language definition from `.yml` source by navigating to a folder contain this package in terminal and typing:
 
     grunt watch
+
+## Licensing
+
+Licensed under permissive [MIT-style license](https://github.com/billymoon/stylus-sublime/blob/master/LICENSE).
