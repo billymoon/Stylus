@@ -37,4 +37,4 @@ If you want to help developing this package you will need [grunt](http://gruntjs
 
 ## Licensing
 
-Licensed under permissive [MIT-style license](https://github.com/billymoon/stylus-sublime/blob/master/LICENSE).
+Licensed under permissive [MIT-style license](https://github.com/billymoon/Stylus/blob/master/LICENSE).
