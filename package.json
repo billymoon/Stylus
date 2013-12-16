@@ -1,0 +1,19 @@
+{
+  "name": "stylus-sublime",
+  "version": "2.0.0",
+  "author": "Dmitriy Kubyshkin <dmitriy@kubyshkin.ru>",
+  "contributors": [ 
+    {
+      "name": "Billy Moon",
+      "email": "billy@itaccess.org"
+    } 
+  ],
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-convert": "*",
+    "grunt-rename": "*",
+    "grunt-contrib-watch": "*",
+    "matchdep": "*"
+  }
+}

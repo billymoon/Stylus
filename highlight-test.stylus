@@ -1,0 +1,143 @@
+/**
+ * This file is compiled based on offical documentation at
+ * http://learnboost.github.io/stylus/ to test highlighting
+ */
+
+/////////////////////////
+// Regular CSS syntax  //
+/////////////////////////
+
+// @at-rules
+@import "test.css";
+@charset "utf-8";
+@font-face {
+    font-family: Ubuntu;
+    src: url('fonts/pompadur.ttf');
+}
+
+// animation
+@keyframes myfirst {
+  from {
+    background: red;
+  }
+  50% {
+    background red
+  }
+  to { 
+    background: yellow;
+  }
+}
+
+// media query
+@media screen and (max-width: 500px) {
+  a {
+    color: #fff;
+  }
+}
+
+// one-line code
+a { color: red; top: 0; } b { color: #fff; } i { color: #fff; }
+
+// Colors
+body { 
+  color: #fff;
+  color: #ffffff;
+  color: rgb(100%, 100%, 50%);
+  color: rgb(23,23,23);
+  color: rgba(23,23,23,0.4);
+  color: hsl(23,23,23);
+  color: hsla(23,23,23,0.4);
+}
+
+// pseudo-elements and selectors
+a:not(:dir(rtl))::after {color: red; }
+
+
+
+/////////////////////////////
+// Stylus-specific syntax  //
+/////////////////////////////
+
+// Literal css
+@css {
+  a {
+    color: #fff;
+  }
+}
+
+// Escaping
+body
+  top 10 \+ 5
+
+// Multiple selectors separated by line break
+html
+body
+  color white 
+
+// Compound selectors
+body.someclass#someid
+  color red
+
+// Multiple selectors separated by comma
+textarea, input
+  border 1px solid #fff
+
+// Multiple properties separated by line
+a
+  font-size 10px
+  left 15px
+
+// Multiple properties separated by semicolon
+header
+  font-size 10px; left 15px; 
+
+// Ambigious property / selector
+// when with comma should be recognized as a selector
+header body,
+header
+  top 0
+
+// Parent reference, including BEM-style expansion
+.block
+  &
+    top 0
+  &:hover
+    top 0
+  &.test
+    top 0
+    &_modifier
+      top 0
+  &#test
+    top 0
+  header&
+    top 0
+  footer &
+    top 0
+
+// Variable assignments
+i = ''
+n ?= 5
+test := 5
+
+// Complex case of a property
+a
+  /* */fo{i}nt-family{n+1}fsd #ccc  sdfs // 213px
+
+// Function definition and control structures
+somefunciton(a, b = 16px, c = b, d...)
+  if c
+    top b 
+  else
+    bottom a 
+  for x, y in somedictionary
+    &_{x}_{y}
+      color x if y
+
+// Placeholder selectors
+$foo
+  color red
+
+// Extending
+.bar
+  @extend $foo
+  background: #000

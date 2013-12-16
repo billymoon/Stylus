@@ -1,0 +1,553 @@
+name: Stylus
+scopeName: source.stylus
+fileTypes: [styl, stylus]
+uuid: 5739E0FB-A2C0-4CB4-AB89-AFFFFD1F3FA1
+repository:
+
+    string-quoted:
+        # Stylus doesn't support escaping in string so these are simple
+        patterns:
+            -
+                match: "'[^']*'"
+                name: string.quoted.single.stylus
+            -
+                match: '"[^"]*"'
+                name: string.quoted.double.stylus
+
+    variable:
+        match: '([\w$-]+)'
+        name: variable.other.stylus
+
+    escape:
+        match: '\\.'
+        name: constant.character.escape.stylus
+
+    interpolation:
+        begin: \{
+        end: \}
+        beginCaptures:
+            0: { name: punctuation.section.embedded.start.stylus }
+        endCaptures:
+            1: { name: punctuation.section.embedded.end.stylus }
+        patterns:
+            - { include: '#expression' }
+        name: stylus.embedded.source
+
+    language-constants:
+        match: '\b(true|false|null)\b'
+        name: constant.language.stylus
+
+    language-operators:
+        match: '((?:\?|:|!|~|\+|-|(?:\*)?\*|\/|%|(\.)?\.\.|&lt;|&gt;|(?:=|:|\?|\+|-|\*|\/|%|&lt;|&gt;)?=|!=)|\b(?:in|is(?:nt)?|(?&lt;!:)not)\b)'
+        name: keyword.operator.stylus
+
+    language-keywords:
+        patterns:
+            -
+                match: '(\b|\s)(!important|in|return|else|return|is defined|is a)\b'
+                name: keyword.control.stylus
+            -   # Reserved variable available in all functions
+                match: \barguments\b
+                name: variable.language.stylus
+
+    language-property-value-constants:
+        match: '\b(absolute|all(-scroll)?|always|armenian|auto|avoid|baseline|below|bidi-override|block|bold|bolder|both|bottom|break-all|break-word|capitalize|center|char|circle|cjk-ideographic|col-resize|collapse|crosshair|dashed|decimal-leading-zero|decimal|default|disabled|disc|distribute-all-lines|distribute-letter|distribute-space|distribute|dotted|double|e-resize|ellipsis|fixed|geometricPrecision|georgian|groove|hand|hebrew|help|hidden|hiragana-iroha|hiragana|horizontal|ideograph-alpha|ideograph-numeric|ideograph-parenthesis|ideograph-space|inactive|inherit|inline-block|inline|inset|inside|inter-ideograph|inter-word|italic|justify|katakana-iroha|katakana|keep-all|left|lighter|line-edge|line-through|line|list-item|loose|lower-alpha|lower-greek|lower-latin|lower-roman|lowercase|lr-tb|ltr|medium|middle|move|n-resize|ne-resize|newspaper|no-drop|no-repeat|nw-resize|none|normal|not-allowed|nowrap|oblique|optimize(Legibility|Quality|Speed)|outset|outside|overline|pointer|pre(-(wrap|line))?|progress|relative|repeat-x|repeat-y|repeat|right|ridge|row-resize|rtl|s-resize|scroll|se-resize|separate|small-caps|solid|square|static|strict|sub|super|sw-resize|table(-(row|cell|footer-group|header-group))?|tb-rl|text-bottom|text-top|text|thick|thin|top|transparent|underline|upper-alpha|upper-latin|upper-roman|uppercase|vertical(-(ideographic|text))?|visible(Painted|Fill|Stroke)?|w-resize|wait|whitespace|zero|smaller|larger|((xx?-)?(small|large))|painted|fill|stroke)\b'
+        name: constant.property-value.stylus
+
+    numeric-values:
+        patterns:
+            -   # Hex color
+                captures:
+                    1: { name: punctuation.definition.constant.stylus }
+                match: '(#)([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b'
+                name: constant.other.color.rgb-value.stylus
+            -
+                captures:
+                    1: { name: keyword.other.unit.stylus }
+                match: |
+                    (?x)                    # multi-line regex definition mode
+                    (?:-|\+)?               # negative / positive
+                    (?:
+                        (?:
+                            [0-9]+          # integer part
+                            (?:\.[0-9]+)?   # fraction
+                        ) |
+                        (?:\.[0-9]+)        # fraction without leading zero
+                    )
+                    ((?:                    # units
+                        px|pt|ch|cm|mm|in|
+                        r?em|ex|pc|deg|
+                        g?rad|dpi|dpcm|s
+                    )\b|%)?
+                name: constant.numeric.stylus
+
+    color-values:
+        patterns:
+            -
+                # http://www.w3.org/TR/CSS21/syndata.html#value-def-color
+                match: \b(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)\b
+                name: constant.color.w3c-standard-color-name.stylus
+            -
+                begin: (hsla?|rgba?)\s*(\()
+                beginCaptures:
+                    1: { name: keyword.language.function.misc.stylus }
+                end: \)
+                patterns:
+                    -
+                        # interger values
+                        match: |
+                            (?x) # multi-line regex definition mode
+                            \b
+                            # color components between 0 and 255
+                            (0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\s*,\s*){2}
+                            (0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\b)
+                            # opactity if present
+                            (\s*,\s*((0?\.[0-9]+)|[0-1]))?
+                        name: constant.other.color.rgb-value.stylus
+                    -
+                        # percentages
+                        match: |
+                            (?x) # multi-line regex definition mode
+                            \b
+                            ([0-9]{1,2}|100)\s*%, # red
+                            \s*
+                            ([0-9]{1,2}|100)\s*%, # green
+                            \s*
+                            ([0-9]{1,2}|100)\s*%  # blue
+                        name: constant.other.color.rgb-percentage.stylus
+            - { include: '#numeric-values' }
+
+    expression:
+        patterns:
+            - { include: '#iteration' }
+            - { include: '#conditionals' }
+            - { include: '#language-operators' }
+            - { include: '#language-keywords' }
+            - { include: '#color-values' }
+            - { include: '#function-call' }
+            - { include: '#string-quoted' }
+            - { include: '#escape' }
+            - { include: '#language-constants' }
+            - { include: '#language-property-value-constants' }
+            - { include: '#property-reference' }
+            - { include: '#variable' }
+
+    property-reference:
+        # Reference to another property
+        match: '@[a-z-]+'
+        name: variable.other.property.stylus
+
+    function-call:
+        # Function call (or definition when no curly braces are used)
+        begin: '([\w$-]+)\s*(\()'
+        beginCaptures:
+            1: { name: support.function-call.stylus }
+            2: { name: punctuation.definition.parameters.start.stylus }
+        end: '(\))'
+        endCaptures:
+            1: { name: punctuation.definition.parameters.end.stylus }
+        patterns:
+            - { include: '#expression' }
+
+    iteration: 
+        begin: "(^\s*|\s+)(for)\s+(?=.*?\s+in\s+)"
+        beginCaptures:
+            2: { name: keyword.control.stylus }
+        end: '$|\{'
+        patterns:
+            - { include: '#expression' }
+
+    conditionals:
+        begin: "(^\s*|\s+)(if|unless|else)(?=[\s({]|$)\s*"
+        beginCaptures:
+            2: { name: keyword.control.stylus }
+        end: '(?=$|\{)'
+        patterns:
+            - { include: '#expression' }
+
+    media-query-properties:
+        # Simple matching of all valid properties without checking 
+        # for a propert format of "name:value" because we only
+        # need to highlight the document and not validate it.
+        patterns:
+            -
+                match: |
+                    (?x)
+                    (
+                        ((min|max)-)?
+                        (
+                            ((device-)?(height|width|aspect-ratio))|
+                            (color(-index)?)|monochrome|resolution
+                        )
+                    )|grid|scan|orientation
+                captures:
+                    0: { name: support.type.property-name.media.stylus }
+            -
+                match: '\b(portrait|landscape|progressive|interlace)\b'
+                captures:
+                    1: { name: support.constant.property-value.stylus }
+
+
+    media-query-list:
+        # List of media query selectors separated by "and"
+        begin: '\s*(and)?\s*(\()\s*'
+        beginCaptures:
+            1: { name: keyword.operator.logic.media.stylus }
+        end: \)
+        patterns:
+            - { include: '#media-query-properties'}
+            - { include: '#numeric-values'}
+
+    media-query:
+        # Main media query pattern
+        patterns:
+            -
+                begin: '\s*(?![{;]|$)'
+                end: '\s*(?=[{;]|$)'
+                patterns:
+                    -
+                        begin: '(?i)\s*(only|not)?\s*(all|aural|braille|embossed|handheld|print|projection|screen|tty|tv)?(?![\w\d$-]+)'
+                        beginCaptures:
+                            1: { name: keyword.operator.logic.media.stylus }
+                            2: { name: support.constant.media.stylus }
+                        end: '\s*(?:(,)|(?=[{;]|$))'
+                        patterns:
+                            - { include: '#media-query-list'}
+                    - { include: '#variable' }
+
+    pseudo-nth:
+        begin: '(:(nth-child|nth-last-child|nth-of-type|nth-last-of-type|nth-match|nth-last-match|nth-column|nth-last-column))\s*\('
+        beginCaptures:
+            1: { name: entity.other.attribute-name.pseudo-class.stylus }
+        end: \)
+        patterns:
+            - { include: '#language-operators' }
+            - { include: '#interpolation' }
+            -
+                match: \b(odd|even)\b
+                name: constant.language.stylus
+            -
+                match: \d+
+                name: constant.numeric.stylus
+            -
+                match: \bn\b
+                name: variable.language.stylus
+
+    pseudo-not:
+        begin: '(:not)\s*\('
+        beginCaptures:
+            1: { name: entity.other.attribute-name.pseudo-element.stylus }
+        end: \)
+        patterns:
+            - { include: '#selector-components' }
+
+    pseudo:
+        patterns:
+            -
+                match: ':(active|checked|default|disabled|empty|enabled|first-child|first-of-type|first|fullscreen|focus|hover|indeterminate|in-range|invalid|last-child|last-of-type|left|link|only-child|only-of-type|optional|out-of-range|read-only|read-write|required|right|root|scope|target|valid|visited)\b'
+                name: entity.other.attribute-name.pseudo-class.stylus
+
+            -
+                match: ':?:(before|after)\b'
+                name: entity.other.attribute-name.pseudo-element.stylus
+
+            -
+                match: '::(first-letter|first-number|selection)\b'
+                name: entity.other.attribute-name.pseudo-element.stylus
+
+            -
+                match: '(:dir)\s*(\((ltr|rtl)?\))?'
+                captures:
+                    1: { name: entity.other.attribute-name.pseudo-element.stylus }
+                    3: { name: constant.language.stylus }
+
+            -
+                match: '(:lang)\s*(\((\w+(-\w+)?)?\))?'
+                captures:
+                    1: { name: entity.other.attribute-name.pseudo-element.stylus }
+                    3: { name: constant.language.stylus }
+
+            - { include: '#pseudo-nth' }
+            - { include: '#pseudo-not' }
+
+
+    selector-components:
+        patterns:
+            - { include: '#comments' }
+            - { include: '#interpolation' }
+            - { include: '#pseudo' }
+            - 
+                match: '\$[\w$-]+\b'
+                name: entity.other.placeholder.stylus
+            -
+                match: '[:~&gt;]'
+                name: keyword.operator.selector.stylus
+            -   # List of all html (including non-standard) tags based on MDN:
+                # https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+                match: |
+                    (?x) # multi-line regex definition mode
+                    \b(
+                        a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
+                        basefont|bdi|bdo|bgsound|big|blink|blockquote|body|br|button|
+                        canvas|caption|center|cite|code|col|colgroup|content|data|
+                        datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|
+                        em|embed|fieldset|figcaption|figure|font|footer|form|frame|
+                        frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|
+                        img|input|ins|isindex|kbd|keygen|label|legend|li|link|listing|
+                        main|map|mark|marquee|menu|menuitem|meta|meter|nav|nobr|
+                        noframes|noscript|object|ol|optgroup|option|output|p|param|
+                        plaintext|pre|progress|q|rp|rt|ruby|s|samp|script|section|
+                        select|shadow|small|source|spacer|span|strike|strong|style|
+                        sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
+                        thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp
+                    )\b
+                name: entity.name.tag.stylus
+
+            -   # CSS class
+                match: \.[a-zA-Z0-9_-]+
+                name: entity.other.attribute-name.class.stylus
+
+            -   # CSS class
+                match: \.[a-zA-Z0-9_-]+
+                name: entity.other.attribute-name.class.stylus
+
+            -   # CSS id
+                match: '#[a-zA-Z0-9_-]+'
+                name: entity.other.attribute-name.class.stylus
+
+            -   # Reference to parent selector including custom interpolation
+                match: |
+                    (?x)            # multi-line regex definition mode
+                    ([\w\d_-]+)?    # matching any word right before &
+                    (&amp;)         # & itself, escaped because of plist
+                    ([\w\d_-]+)?    # matching any word right after &
+                captures:
+                    1: { name: entity.other.attribute-name.stylus }
+                    2: { name: variable.language.stylus }
+                    3: { name: entity.other.attribute-name.stylus }
+
+    comments:
+        patterns:
+            -   # Single-line comment
+                captures:
+                    1: { name: punctuation.definition.comment.stylus }
+                match: (\/\/).*$
+                name: comment.line.stylus
+
+            -   # Multi-line comment
+                begin: \/\*
+                captures:
+                    0: { name: punctuation.definition.comment.stylus }
+                end: \*\/
+                name: comment.block.stylus
+
+patterns:
+    - { include: '#comments' }
+    -   # Simple @-rules
+        begin: '^\s*(@(?:import|charset|css|font-face|(?:-webkit-)?keyframes)(?:\s+([\w-]+))?)\b'
+        beginCaptures:
+            1: { name: keyword.control.at-rule.other.stylus }
+            2: { name: variable.other.animation-name.stylus }
+        patterns:
+            - { include: '#string-quoted' }
+        end: $|;|\{
+
+    -   # Media query
+        begin: '^\s*(@media)\s*'
+        beginCaptures:
+            1: { name: keyword.control.at-rule.media.stylus }
+        patterns:
+            - { include: '#media-query'}
+        end: $|\{
+
+    -   # Variable assignment. There's a check for "@" here
+        # because Stylus doesn't throw error but doesn't
+        # compile properly either
+        begin: '(?&lt;=^|;|})\s*(@)?([\w$-]+)\s*([?:]?=)'
+        beginCaptures:
+            1: { name: invalid.illegal.bad-character.stylus }
+            2: { name: variable.other.stylus }
+            3: { name: keyword.operator.assignment.stylus }
+        patterns:
+            - { include: '#expression' }
+        end: $|;
+
+    - { include: '#iteration' }
+    - { include: '#conditionals' }
+
+    -   # Function definition (with curly braces)
+        begin: |
+            (?x)            # multi-line regex definition mode
+
+            ^(\s*)          # starts at the beginning of line
+            ([\w$-]+)       # identifier (name)
+            \s*
+            (\()            # start of argument list
+            (?=
+                .*?
+                \)\s*\{     # we see a curly brace afterwards
+            )               # which means this is a function definition
+
+        beginCaptures:
+            2: { name: entity.name.function.stylus }
+            3: { name: punctuation.definition.parameters.start.stylus }
+        end: '(\))'
+        endCaptures:
+            1: { name: punctuation.definition.parameters.end.stylus }
+        patterns:
+            - { include: '#expression' }
+
+    -   # Call to function as property (mixin)
+        begin: |
+            (?x)                # multi-line regex definition mode
+            (
+
+                (^|;)           # starts at the beginning of line or at a ;
+                \s*
+                ([\w$-]+)       # identifier (name)
+                \s*
+                (\()            # start of argument list
+                (?=
+                    .*?
+                    \)\s*;?\s*  # if there are only spaces and semicolons
+                    $|;         # then this a 
+                )
+            )
+        beginCaptures:
+            3: { name: entity.other.attribute-name.mixin.stylus }
+            4: { name: punctuation.definition.parameters.start.stylus }
+        end: '(\))'
+        endCaptures:
+            1: { name: punctuation.definition.parameters.end.stylus }
+        patterns:
+            - { include: '#expression' }
+
+    -   # CSS selectors. Since we can't rely on curly braces or indentation,
+        # the only option here is to test whether line starts with valid
+        # selector component (id, class, tag, pseudo-element/class)
+        # unfortunately that means duplicating those regular expressions
+        begin: |
+            (?x) # multi-line regex definition mode
+            (^|\}|(?&lt;=\*/))\s*
+            (?=
+                (
+                    (a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
+                    basefont|bdi|bdo|bgsound|big|blink|blockquote|body|br|button|
+                    canvas|caption|center|cite|code|col|colgroup|data|
+                    datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|
+                    em|embed|fieldset|figcaption|figure|font|footer|form|frame|
+                    frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|
+                    img|input|ins|isindex|kbd|keygen|label|legend|li|link|listing|
+                    main|map|mark|marquee|menu|menuitem|meta|meter|nav|nobr|
+                    noframes|noscript|object|ol|optgroup|option|output|p|param|
+                    plaintext|pre|progress|q|rp|rt|ruby|s|samp|script|section|
+                    select|shadow|small|source|spacer|span|strike|strong|style|
+                    sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
+                    thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp)
+
+                    \s*([\s,.#]|:[^\s])
+
+                ) | (
+                                        # Property can't start with these
+                    [:~&gt;]            # symbols but they are valid for selector
+                                        # so use it as a recognition rule
+
+                ) | (                   # for animtions
+
+                    \d+(\.\d+)?%|(from|to)\b
+
+                ) | (                   # Placeholder selectors
+
+                    \$[\w$-]+\b\s*        # are an identifier starting with $
+                    (?=$|\{)            # and they can't have anything besides
+                                        # that identifier in the same line
+
+                ) | (                   # CSS class
+
+                    \.[a-zA-Z0-9_-]+
+
+                ) | (                   # CSS id
+
+                    \#[a-zA-Z0-9_-]+
+
+                ) | (                   # Reference to parent
+
+                    ([\w\d_-]+)?        # matching any word right before &
+                    (&amp;)             # & itself, escaped because of plist
+                    ([\w\d_-]+)?        # matching any word right after &
+                )
+            )
+        patterns:
+            -   # for keyframe animation 
+                match: '\d+(\.\d+)?%|from|to'
+                name: entity.other.animation-keyframe.stylus
+            - { include: '#selector-components' }
+            -   # colorizing the rest
+                match: .
+                name: entity.other.attribute-name.stylus
+        end: $|(?&lt;!\w)\{
+        name: meta.selector.stylus
+
+    -   # CSS Property with Stylus interpolation
+        begin: |
+            (?x)                # multi-line regex definition mode
+            (?&lt;=^|;|{)\s*    # starts after begining of line, '{' or ';''
+            (?=                 # lookahead for
+                (?&lt;!return)     # FIXME deal with this properly
+                (
+                 [a-zA-Z0-9_-]  # then a letter
+                 |              # or
+                 (\{(.*?)\})    # interpolation
+                 |              
+                 (/\*.*?\*/)
+                )+
+               
+                (?!             # negative lookahead:
+                    (\s+{|$)    # if there are only spaces afterwards
+                    |           # or
+                    (.*?,\s*$)  # line is ending in comma
+                )               # then this is not a property
+
+                [: ]            # value is separted by colon or space
+
+                (?!             
+                    [^}]*?      # checking for an unclosed curly braces on this
+                    \{          # line because if one exists it means that
+                    [^}]*       # this is a selector and not a property
+                    ($|\})
+                )
+            )
+        end: '(?=\}|;|$)'
+        patterns:
+            - { include: '#comments' }
+            - { include: '#interpolation' }
+            -
+                begin: '(?&lt;!^|;|{)\s*[: ]'
+                end: '(?=\}|;|$)'
+                patterns:
+                    - { include: '#comments' }
+                    - { include: '#expression' }
+            -   # Vendor prefixes
+                match: -(moz|o|ms|webkit|khtml)-
+                name: keyword.vendor-prefix.stylus
+            -   # matching remaining characters as a property name
+                # this is necessary in case there was an interpolation
+                match: .
+                name: support.type.property-name.stylus
+
+    -
+        begin: '@extends?\s'
+        beginCaptures:
+            0: { name: keyword.language.stylus }
+        patterns:
+            - { include: '#selector-components' }
+        end: (?=$|;)
+
+    - { include: '#string-quoted' }
+    - { include: '#escape' }
+    - { include: '#language-constants' }
+    - { include: '#language-operators' }
+    - { include: '#language-keywords' }
+    - { include: '#property-reference' }
+    - { include: '#function-call' }
+
