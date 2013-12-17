@@ -479,13 +479,16 @@ patterns:
             )
         patterns:
             -   # for keyframe animation 
+                match: '\s*,\s*'
+                name: meta.selector.delimiter.stylus
+            -   # for keyframe animation 
                 match: '\d+(\.\d+)?%|from|to'
                 name: entity.other.animation-keyframe.stylus
             - { include: '#selector-components' }
             -   # colorizing the rest
                 match: .
                 name: entity.other.attribute-name.stylus
-        end: $|(?&lt;!\w)\{
+        end: \n|$|(?&lt;!\w)\{
         name: meta.selector.stylus
 
     -   # CSS Property with Stylus interpolation
@@ -510,7 +513,7 @@ patterns:
 
                 [: ]            # value is separted by colon or space
 
-                (?!             
+                (?!
                     [^}]*?      # checking for an unclosed curly braces on this
                     \{          # line because if one exists it means that
                     [^}]*       # this is a selector and not a property

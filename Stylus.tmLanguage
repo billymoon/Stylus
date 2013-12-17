@@ -975,6 +975,12 @@
         <array>
           <dict>
             <key>match</key>
+            <string>\s*,\s*</string>
+            <key>name</key>
+            <string>meta.selector.delimiter.stylus</string>
+          </dict>
+          <dict>
+            <key>match</key>
             <string>\d+(\.\d+)?%|from|to</string>
             <key>name</key>
             <string>entity.other.animation-keyframe.stylus</string>
@@ -991,7 +997,7 @@
           </dict>
         </array>
         <key>end</key>
-        <string>$|(?&lt;!\w)\{</string>
+        <string>\n|$|(?&lt;!\w)\{</string>
         <key>name</key>
         <string>meta.selector.stylus</string>
       </dict>
@@ -1017,7 +1023,7 @@
 
     [: ]            # value is separted by colon or space
 
-    (?!             
+    (?!
         [^}]*?      # checking for an unclosed curly braces on this
         \{          # line because if one exists it means that
         [^}]*       # this is a selector and not a property
