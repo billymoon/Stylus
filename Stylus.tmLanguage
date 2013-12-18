@@ -11,6 +11,10 @@
       <string>styl</string>
       <string>stylus</string>
     </array>
+    <key>foldingStartMarker</key>
+    <string>\{\s*$</string>
+    <key>foldingStopMarker</key>
+    <string>^\s*\}</string>
     <key>uuid</key>
     <string>5739E0FB-A2C0-4CB4-AB89-AFFFFD1F3FA1</string>
     <key>repository</key>

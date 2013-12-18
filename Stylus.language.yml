@@ -1,6 +1,8 @@
 name: Stylus
 scopeName: source.stylus
 fileTypes: [styl, stylus]
+foldingStartMarker: "\{\s*$"
+foldingStopMarker: "^\s*\}"
 uuid: 5739E0FB-A2C0-4CB4-AB89-AFFFFD1F3FA1
 repository:
 
