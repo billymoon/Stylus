@@ -945,7 +945,7 @@
         sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
         thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp)
 
-        \s*([\s,.#]|:[^\s])
+        \s*([\s,.#]|:[^\s]|(?=\{))
 
     ) | (
         [:~&gt;]            # symbols but they are valid for selector
@@ -1001,7 +1001,8 @@
           </dict>
         </array>
         <key>end</key>
-        <string>\n|$|(?&lt;!\w)\{</string>
+        <string>
+|$|(?=\{\s*\}.*$)|(?=\{)(?!.+\}.*$)</string>
         <key>name</key>
         <string>meta.selector.stylus</string>
       </dict>

@@ -72,7 +72,18 @@ body
 // Multiple selectors separated by line break
 html
 body
-  color white 
+  color white
+  // vendor prefix
+  -webkit-background-clip:
+
+  // ending in interpolation
+  h1{s} {
+    text-decoration: none;
+  }
+  // no space before braces
+  h2{
+    color black
+  }
 
 // Compound selectors
 body.someclass#someid

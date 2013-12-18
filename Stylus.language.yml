@@ -447,7 +447,7 @@ patterns:
                     sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
                     thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp)
 
-                    \s*([\s,.#]|:[^\s])
+                    \s*([\s,.#]|:[^\s]|(?=\{))
 
                 ) | (
                                         # Property can't start with these
@@ -490,7 +490,7 @@ patterns:
             -   # colorizing the rest
                 match: .
                 name: entity.other.attribute-name.stylus
-        end: \n|$|(?&lt;!\w)\{
+        end: "\n|$|(?=\{\s*\}.*$)|(?=\{)(?!.+\}.*$)"
         name: meta.selector.stylus
 
     -   # CSS Property with Stylus interpolation
