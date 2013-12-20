@@ -103,9 +103,15 @@
         <array>
           <dict>
             <key>match</key>
-            <string>(\b|\s)(!important|in|return|else|return|is defined|is a)\b</string>
+            <string>(\b|\s)(return|else)\b</string>
             <key>name</key>
             <string>keyword.control.stylus</string>
+          </dict>
+          <dict>
+            <key>match</key>
+            <string>(\b|\s)(!important|in|is defined|is a)\b</string>
+            <key>name</key>
+            <string>keyword.other.stylus</string>
           </dict>
           <dict>
             <key>match</key>

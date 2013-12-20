@@ -46,8 +46,11 @@ repository:
     language-keywords:
         patterns:
             -
-                match: '(\b|\s)(!important|in|return|else|return|is defined|is a)\b'
+                match: '(\b|\s)(return|else)\b'
                 name: keyword.control.stylus
+            -
+                match: '(\b|\s)(!important|in|is defined|is a)\b'
+                name: keyword.other.stylus
             -   # Reserved variable available in all functions
                 match: \barguments\b
                 name: variable.language.stylus
