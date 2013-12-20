@@ -608,6 +608,60 @@
           </dict>
         </array>
       </dict>
+      <key>attribute-selector</key>
+      <dict>
+        <key>begin</key>
+        <string>\[</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>meta.brace.square</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>\]</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>meta.brace.square</string>
+          </dict>
+        </dict>
+        <key>name</key>
+        <string>entity.other.attribute.stylus</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#string-quoted</string>
+          </dict>
+          <dict>
+            <key>match</key>
+            <string>([\w-]+)([|~]?=)?([^""''\]]*)(?=\])</string>
+            <key>captures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>entity.other.attribute-name.stylus</string>
+              </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>meta.operator.stylus</string>
+              </dict>
+              <key>3</key>
+              <dict>
+                <key>name</key>
+                <string>string.unquoted.stylus</string>
+              </dict>
+            </dict>
+          </dict>
+        </array>
+      </dict>
       <key>selector-components</key>
       <dict>
         <key>patterns</key>
@@ -619,6 +673,10 @@
           <dict>
             <key>include</key>
             <string>#interpolation</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#attribute-selector</string>
           </dict>
           <dict>
             <key>include</key>
@@ -945,10 +1003,10 @@
         sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
         thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp)
 
-        \s*([\s,.#]|:[^\s]|(?=\{))
+        \s*([\s,.#\[]|:[^\s]|(?=\{))
 
     ) | (
-        [:~&gt;]            # symbols but they are valid for selector
+        [:~&gt;\[*]         # symbols but they are valid for selector
 
     ) | (                   # for animtions
 
@@ -1002,7 +1060,7 @@
         </array>
         <key>end</key>
         <string>
-|$|(?=\{\s*\}.*$)|(?=\{)(?!.+\}.*$)</string>
+|$|(?=\{\s*\}.*$)|(?=\{.*?[:;])|(?=\{)(?!.+\}.*$)</string>
         <key>name</key>
         <string>meta.selector.stylus</string>
       </dict>

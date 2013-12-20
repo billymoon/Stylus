@@ -3,10 +3,6 @@
  * http://learnboost.github.io/stylus/ to test highlighting
  */
 
-/////////////////////////
-// Regular CSS syntax  //
-/////////////////////////
-
 // @at-rules
 @import "test.css";
 @charset "utf-8";
@@ -52,12 +48,6 @@ body {
 // pseudo-elements and selectors
 a:not(:dir(rtl))::after {color: red; }
 
-
-
-/////////////////////////////
-// Stylus-specific syntax  //
-/////////////////////////////
-
 // Literal css
 @css {
   a {
@@ -65,16 +55,24 @@ a:not(:dir(rtl))::after {color: red; }
   }
 }
 
+// Universal selector
+*, *.test, *#test
+  color: white
+
+// tag attributes selectors
+[a=bb], [a~=bb], [a|=bb], [a="bb"], [a='bb']
+  color: red
+
 // Escaping
 body
   top 10 \+ 5
 
 // Multiple selectors separated by line break
-html
+html,
 body
   color white
   // vendor prefix
-  -webkit-background-clip:
+  -webkit-background-clip: border-box
 
   // ending in interpolation
   h1{s} {
