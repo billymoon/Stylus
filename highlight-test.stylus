@@ -41,10 +41,10 @@ body {
   color: #fff4;
   color: #ffffff44;
   color: rgb(100%, 100%, 50%);
-  color: rgb(23,23,23);
-  color: rgba(23,23,23,0.4);
-  color: hsl(23,23,23);
-  color: hsla(23,23,23,0.4);
+  color: rgb(23, 23, 23);
+  color: rgba(23, 23, 23, 0.4);
+  color: hsl(23, 23, 23);
+  color: hsla(23, 23, 23, 0.4);
 }
 
 // Properties

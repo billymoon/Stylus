@@ -61,7 +61,28 @@ repository:
             -   # Hex color
                 captures:
                     1: { name: punctuation.definition.constant.stylus }
-                match: '(#)([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b'
+                match: |
+                    (?x) # multi-line regex definition mode
+                    (\#)(?:
+                            ([0-9a-fA-F])
+                            ([0-9a-fA-F])
+                            ([0-9a-fA-F])
+                            ([0-9a-fA-F])?
+                    |       ([0-9a-fA-F]{2})
+                            ([0-9a-fA-F]{2})
+                            ([0-9a-fA-F]{2})
+                            ([0-9a-fA-F]{2})?
+                    )\b
+                captures:
+                    1: { name: punctuation.definition.constant.stylus }
+                    2: { name: constant.other.color.rgb-value.red.stylus }
+                    3: { name: constant.other.color.rgb-value.green.stylus }
+                    4: { name: constant.other.color.rgb-value.blue.stylus }
+                    5: { name: constant.other.color.rgb-value.alpha.stylus }
+                    6: { name: constant.other.color.rgb-value.red.stylus }
+                    7: { name: constant.other.color.rgb-value.green.stylus }
+                    8: { name: constant.other.color.rgb-value.blue.stylus }
+                    9: { name: constant.other.color.rgb-value.alpha.stylus }
                 name: constant.other.color.rgb-value.stylus
             -
                 captures:
@@ -101,22 +122,35 @@ repository:
                             (?x) # multi-line regex definition mode
                             \b
                             # color components between 0 and 255
-                            (0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\s*,\s*){2}
-                            (0*((1?[0-9]{1,2})|(2([0-4][0-9]|5[0-5])))\b)
-                            # opactity if present
-                            (\s*,\s*((0?\.[0-9]+)|[0-1]))?
-                        name: constant.other.color.rgb-value.stylus
+                            (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\s*(,)\s*)
+                            (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\s*(,)\s*)
+                            (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\b)
+                            # opacity if present
+                            (?:\s*(,)\s*((0?\.[0-9]+)|[0-1]))?
+                        captures:
+                            1: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.red.stylus }
+                            2: { name: punctuation.delimiter.stylus }
+                            3: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.green.stylus }
+                            4: { name: punctuation.delimiter.stylus }
+                            5: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus }
+                            6: { name: punctuation.delimiter.stylus }
+                            7: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.alpha.stylus }
                     -
                         # percentages
                         match: |
                             (?x) # multi-line regex definition mode
                             \b
-                            ([0-9]{1,2}|100)\s*%, # red
+                            ((?:[0-9]{1,2}|100)%)(,) # red
                             \s*
-                            ([0-9]{1,2}|100)\s*%, # green
+                            ((?:[0-9]{1,2}|100)%)(,) # green
                             \s*
-                            ([0-9]{1,2}|100)\s*%  # blue
-                        name: constant.other.color.rgb-percentage.stylus
+                            ((?:[0-9]{1,2}|100)%)    # blue
+                        captures:
+                            1: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.red.stylus }
+                            2: { name: punctuation.delimiter.stylus }
+                            3: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.green.stylus }
+                            4: { name: punctuation.delimiter.stylus }
+                            5: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus }
             - { include: '#numeric-values' }
 
     expression:
