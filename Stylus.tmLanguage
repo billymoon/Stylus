@@ -737,7 +737,7 @@
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>meta.brace.square</string>
+            <string>punctuation.definition.entity.stylus</string>
           </dict>
         </dict>
         <key>end</key>
@@ -747,33 +747,67 @@
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>meta.brace.square</string>
+            <string>punctuation.definition.entity.stylus</string>
           </dict>
         </dict>
-        <key>name</key>
-        <string>entity.other.attribute.stylus</string>
         <key>patterns</key>
         <array>
+          <dict>
+            <key>begin</key>
+            <string>(?&lt;=\[)|(?&lt;=\{)</string>
+            <key>end</key>
+            <string>(?=[|~=\]\s])</string>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#interpolation</string>
+              </dict>
+              <dict>
+                <key>match</key>
+                <string>.</string>
+                <key>captures</key>
+                <dict>
+                  <key>0</key>
+                  <dict>
+                    <key>name</key>
+                    <string>entity.other.attribute-name.stylus</string>
+                  </dict>
+                </dict>
+              </dict>
+            </array>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#interpolation</string>
+          </dict>
           <dict>
             <key>include</key>
             <string>#string-quoted</string>
           </dict>
           <dict>
             <key>match</key>
-            <string>([\w-]+)([|~]?=)?([^""''\]]*)(?=\])</string>
+            <string>([|~]?=)</string>
             <key>captures</key>
             <dict>
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>entity.other.attribute-name.stylus</string>
+                <string>keyword.operator.stylus</string>
               </dict>
               <key>2</key>
               <dict>
                 <key>name</key>
-                <string>meta.operator.stylus</string>
+                <string>string.unquoted.stylus</string>
               </dict>
-              <key>3</key>
+            </dict>
+          </dict>
+          <dict>
+            <key>match</key>
+            <string>.</string>
+            <key>captures</key>
+            <dict>
+              <key>0</key>
               <dict>
                 <key>name</key>
                 <string>string.unquoted.stylus</string>
@@ -781,6 +815,8 @@
             </dict>
           </dict>
         </array>
+        <key>name</key>
+        <string>meta.attribute-selector.stylus</string>
       </dict>
       <key>selector-components</key>
       <dict>

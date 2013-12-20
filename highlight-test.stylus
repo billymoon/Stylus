@@ -85,7 +85,8 @@ a:not(:dir(rtl))::after {color: red; }
   color: white
 
 // tag attributes selectors
-[a=bb], [a~=bb], [a|=bb], [a="bb"], [a='bb']
+[a=bb], [a~=bb], [a|=bb], [a="bb"], [a='bb'],
+[{x}a{x}sd{x}=sdf], [a={x}s{x}df{x}]
   color: red
 
 // Escaping

@@ -312,19 +312,32 @@ repository:
     attribute-selector:
         begin: "\\["
         beginCaptures:
-            0: { name: meta.brace.square }
+            0: { name: punctuation.definition.entity.stylus }
         end: "\\]"
         endCaptures:
-            0: { name: meta.brace.square }
-        name: entity.other.attribute.stylus
+            0: { name: punctuation.definition.entity.stylus }
         patterns:
+            -
+                begin: '(?&lt;=\[)|(?&lt;=\{)'
+                end: '(?=[|~=\]\s])'
+                patterns:
+                    - { include: '#interpolation' }
+                    -
+                        match: .
+                        captures:
+                            0: { name: entity.other.attribute-name.stylus }
+            - { include: '#interpolation' }
             - { include: '#string-quoted' }
             -
-                match: ([\w-]+)([|~]?=)?([^""''\]]*)(?=\])
+                match: ([|~]?=)
                 captures:
-                    1: { name: entity.other.attribute-name.stylus }
-                    2: { name: meta.operator.stylus }
-                    3: { name: string.unquoted.stylus }
+                    1: { name: keyword.operator.stylus }
+                    2: { name: string.unquoted.stylus }
+            -
+                match: .
+                captures:
+                    0: { name: string.unquoted.stylus }
+        name: meta.attribute-selector.stylus
 
 
     selector-components:
