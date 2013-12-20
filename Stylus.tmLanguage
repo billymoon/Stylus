@@ -297,7 +297,7 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>support.function-call.stylus</string>
+            <string>meta.function-call.stylus</string>
           </dict>
           <key>2</key>
           <dict>
@@ -1077,10 +1077,10 @@
      |              # or
      (/\*.*?\*/)    # comment
     )+
-   
-    (?!(\s+{|$))    # if there are only spaces afterwards
 
     \s*[:\s]\s*     # value is separted by colon or space
+
+    (?!(\s*\{))     # if there are only spaces afterwards
 
     (?!
         [^}]*?      # checking for an unclosed curly braces on this
@@ -1091,7 +1091,7 @@
 )
 </string>
         <key>end</key>
-        <string>(?=\}|;|$)</string>
+        <string>(?=\}|;)|(?&lt;!,)\s*\n</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -1106,7 +1106,7 @@
             <key>begin</key>
             <string>(?&lt;!^|;|{)\s*[:\s]</string>
             <key>end</key>
-            <string>(?=\}|;|$)</string>
+            <string>(?=\}|;)|(?=(?&lt;!\,)\s*\n)</string>
             <key>patterns</key>
             <array>
               <dict>

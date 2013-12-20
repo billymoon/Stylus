@@ -49,14 +49,25 @@ body {
 
 // Properties
 a {
-	color: red
-	color:red
-	color :red
-	color red
+  top: 0
+  top:0
+  top :0
+  top 0
 
-	// tabs instead of spaces as delimiters
+  // tabs instead of spaces as delimiters
   -webkit-transition	:	arguments
   -moz-transition	arguments
+
+  // multiline property, comma separated
+  box-shadow: 0 1px 1px #fff,
+              0 0 4px rgba(0,0,0,0.4)
+
+  // multiline function call
+  background-image: linear-gradient(
+    top,
+    #fff,
+    #ccc
+  )
 }
 
 // pseudo-elements and selectors
@@ -147,7 +158,7 @@ a
   /* */fo{i}nt-family{n+1}fsd #ccc  sdfs // 213px
 
 // Function definition and control structures
-somefunciton(a, b = 16px, c = b, d...)
+somefunction(a, b = 16px, c = b, d...)
   if c
     top b 
   else

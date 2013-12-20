@@ -143,7 +143,7 @@ repository:
         # Function call (or definition when no curly braces are used)
         begin: '([\w$-]+)\s*(\()'
         beginCaptures:
-            1: { name: support.function-call.stylus }
+            1: { name: meta.function-call.stylus }
             2: { name: punctuation.definition.parameters.start.stylus }
         end: '(\))'
         endCaptures:
@@ -524,11 +524,11 @@ patterns:
                  |              # or
                  (/\*.*?\*/)    # comment
                 )+
-               
-                (?!(\s+{|$))    # if there are only spaces afterwards
-                                # then this is not a property
 
                 \s*[:\s]\s*     # value is separted by colon or space
+
+                (?!(\s*\{))     # if there are only spaces afterwards
+                                # then this is not a property
 
                 (?!
                     [^}]*?      # checking for an unclosed curly braces on this
@@ -537,13 +537,13 @@ patterns:
                     ($|\})
                 )
             )
-        end: '(?=\}|;|$)'
+        end: '(?=\}|;)|(?&lt;!,)\s*\n'
         patterns:
             - { include: '#comments' }
             - { include: '#interpolation' }
             -
                 begin: '(?&lt;!^|;|{)\s*[:\s]'
-                end: '(?=\}|;|$)'
+                end: '(?=\}|;)|(?=(?&lt;!\,)\s*\n)'
                 patterns:
                     - { include: '#comments' }
                     - { include: '#expression' }
