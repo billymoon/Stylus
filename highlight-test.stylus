@@ -47,6 +47,18 @@ body {
   color: hsla(23,23,23,0.4);
 }
 
+// Properties
+a {
+	color: red
+	color:red
+	color :red
+	color red
+
+	// tabs instead of spaces as delimiters
+  -webkit-transition	:	arguments
+  -moz-transition	arguments
+}
+
 // pseudo-elements and selectors
 a:not(:dir(rtl))::after {color: red; }
 

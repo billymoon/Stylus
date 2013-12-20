@@ -1074,17 +1074,13 @@
      [a-zA-Z0-9_-]  # then a letter
      |              # or
      (\{(.*?)\})    # interpolation
-     |              
-     (/\*.*?\*/)
+     |              # or
+     (/\*.*?\*/)    # comment
     )+
    
-    (?!             # negative lookahead:
-        (\s+{|$)    # if there are only spaces afterwards
-        |           # or
-        (.*?,\s*$)  # line is ending in comma
-    )               # then this is not a property
+    (?!(\s+{|$))    # if there are only spaces afterwards
 
-    [: ]            # value is separted by colon or space
+    \s*[:\s]\s*     # value is separted by colon or space
 
     (?!
         [^}]*?      # checking for an unclosed curly braces on this
@@ -1108,7 +1104,7 @@
           </dict>
           <dict>
             <key>begin</key>
-            <string>(?&lt;!^|;|{)\s*[: ]</string>
+            <string>(?&lt;!^|;|{)\s*[:\s]</string>
             <key>end</key>
             <string>(?=\}|;|$)</string>
             <key>patterns</key>
@@ -1127,13 +1123,13 @@
             <key>match</key>
             <string>-(moz|o|ms|webkit|khtml)-</string>
             <key>name</key>
-            <string>keyword.vendor-prefix.stylus</string>
+            <string>support.type.vendor-prefix.stylus</string>
           </dict>
           <dict>
             <key>match</key>
             <string>.</string>
             <key>name</key>
-            <string>support.type.property-name.stylus</string>
+            <string>meta.property-name.stylus support.type.property-name.stylus</string>
           </dict>
         </array>
       </dict>

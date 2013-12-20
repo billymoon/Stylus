@@ -521,17 +521,14 @@ patterns:
                  [a-zA-Z0-9_-]  # then a letter
                  |              # or
                  (\{(.*?)\})    # interpolation
-                 |              
-                 (/\*.*?\*/)
+                 |              # or
+                 (/\*.*?\*/)    # comment
                 )+
                
-                (?!             # negative lookahead:
-                    (\s+{|$)    # if there are only spaces afterwards
-                    |           # or
-                    (.*?,\s*$)  # line is ending in comma
-                )               # then this is not a property
+                (?!(\s+{|$))    # if there are only spaces afterwards
+                                # then this is not a property
 
-                [: ]            # value is separted by colon or space
+                \s*[:\s]\s*     # value is separted by colon or space
 
                 (?!
                     [^}]*?      # checking for an unclosed curly braces on this
@@ -545,18 +542,18 @@ patterns:
             - { include: '#comments' }
             - { include: '#interpolation' }
             -
-                begin: '(?&lt;!^|;|{)\s*[: ]'
+                begin: '(?&lt;!^|;|{)\s*[:\s]'
                 end: '(?=\}|;|$)'
                 patterns:
                     - { include: '#comments' }
                     - { include: '#expression' }
             -   # Vendor prefixes
                 match: -(moz|o|ms|webkit|khtml)-
-                name: keyword.vendor-prefix.stylus
+                name: support.type.vendor-prefix.stylus
             -   # matching remaining characters as a property name
                 # this is necessary in case there was an interpolation
                 match: .
-                name: support.type.property-name.stylus
+                name: meta.property-name.stylus support.type.property-name.stylus
 
     -
         begin: '@extends?\s'
