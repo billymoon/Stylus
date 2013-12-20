@@ -417,7 +417,7 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>meta.function-call.stylus</string>
+            <string>entity.function-name.stylus</string>
           </dict>
           <key>2</key>
           <dict>
@@ -442,6 +442,8 @@
             <string>#expression</string>
           </dict>
         </array>
+        <key>name</key>
+        <string>meta.function-call.stylus</string>
       </dict>
       <key>iteration</key>
       <dict>

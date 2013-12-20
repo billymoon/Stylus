@@ -180,13 +180,14 @@ repository:
         # Function call (or definition when no curly braces are used)
         begin: '([\w$-]+)\s*(\()'
         beginCaptures:
-            1: { name: meta.function-call.stylus }
+            1: { name: entity.function-name.stylus }
             2: { name: punctuation.definition.parameters.start.stylus }
         end: '(\))'
         endCaptures:
             1: { name: punctuation.definition.parameters.end.stylus }
         patterns:
             - { include: '#expression' }
+        name: meta.function-call.stylus
 
     iteration: 
         begin: "(^\s*|\s+)(for)\s+(?=.*?\s+in\s+)"
