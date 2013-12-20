@@ -38,6 +38,8 @@ a { color: red; top: 0; } b { color: #fff; } i { color: #fff; }
 body { 
   color: #fff;
   color: #ffffff;
+  color: #fff4;
+  color: #ffffff44;
   color: rgb(100%, 100%, 50%);
   color: rgb(23,23,23);
   color: rgba(23,23,23,0.4);

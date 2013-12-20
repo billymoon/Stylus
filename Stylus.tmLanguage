@@ -136,7 +136,7 @@
               </dict>
             </dict>
             <key>match</key>
-            <string>(#)([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b</string>
+            <string>(#)([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b</string>
             <key>name</key>
             <string>constant.other.color.rgb-value.stylus</string>
           </dict>
