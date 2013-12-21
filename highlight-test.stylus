@@ -71,7 +71,9 @@ a {
 }
 
 // pseudo-elements and selectors
-a:not(:dir(rtl))::after {color: red; }
+a:nth-child(2n+1):not(:dir(rtl))::after:lang(fsd):active {
+  color: red;
+}
 
 // Literal css
 @css {
@@ -163,7 +165,7 @@ somefunction(a, b = 16px, c = b, d...)
   if c
     top b 
   else
-    bottom a 
+    return a
   for x, y in somedictionary
     &_{x}_{y}
       color x if y

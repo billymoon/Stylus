@@ -67,7 +67,7 @@
         </dict>
         <key>endCaptures</key>
         <dict>
-          <key>1</key>
+          <key>0</key>
           <dict>
             <key>name</key>
             <string>punctuation.section.embedded.end.stylus</string>
@@ -247,9 +247,22 @@
                 <key>name</key>
                 <string>keyword.language.function.misc.stylus</string>
               </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.parameters.start.stylus</string>
+              </dict>
             </dict>
             <key>end</key>
             <string>\)</string>
+            <key>endCaptures</key>
+            <dict>
+              <key>0</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.parameters.end.stylus</string>
+              </dict>
+            </dict>
             <key>patterns</key>
             <array>
               <dict>
@@ -271,7 +284,7 @@
                   <key>2</key>
                   <dict>
                     <key>name</key>
-                    <string>punctuation.delimiter.stylus</string>
+                    <string>punctuation.delimiter.comma.stylus</string>
                   </dict>
                   <key>3</key>
                   <dict>
@@ -281,7 +294,7 @@
                   <key>4</key>
                   <dict>
                     <key>name</key>
-                    <string>punctuation.delimiter.stylus</string>
+                    <string>punctuation.delimiter.comma.stylus</string>
                   </dict>
                   <key>5</key>
                   <dict>
@@ -291,7 +304,7 @@
                   <key>6</key>
                   <dict>
                     <key>name</key>
-                    <string>punctuation.delimiter.stylus</string>
+                    <string>punctuation.delimiter.comma.stylus</string>
                   </dict>
                   <key>7</key>
                   <dict>
@@ -320,7 +333,7 @@
                   <key>2</key>
                   <dict>
                     <key>name</key>
-                    <string>punctuation.delimiter.stylus</string>
+                    <string>punctuation.delimiter.comma.stylus</string>
                   </dict>
                   <key>3</key>
                   <dict>
@@ -330,7 +343,7 @@
                   <key>4</key>
                   <dict>
                     <key>name</key>
-                    <string>punctuation.delimiter.stylus</string>
+                    <string>punctuation.delimiter.comma.stylus</string>
                   </dict>
                   <key>5</key>
                   <dict>
@@ -347,10 +360,21 @@
           </dict>
         </array>
       </dict>
+      <key>comma</key>
+      <dict>
+        <key>match</key>
+        <string>\s*,\s*</string>
+        <key>name</key>
+        <string>punctuation.delimiter.comma.stylus</string>
+      </dict>
       <key>expression</key>
       <dict>
         <key>patterns</key>
         <array>
+          <dict>
+            <key>include</key>
+            <string>#comma</string>
+          </dict>
           <dict>
             <key>include</key>
             <string>#iteration</string>
@@ -489,10 +513,52 @@
           </dict>
         </array>
       </dict>
+      <key>return</key>
+      <dict>
+        <key>begin</key>
+        <string>^\s*(return)</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.control.stylus</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(;)|(?=$)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.terminator.statement.stylus</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#expression</string>
+          </dict>
+        </array>
+      </dict>
       <key>media-query-properties</key>
       <dict>
         <key>patterns</key>
         <array>
+          <dict>
+            <key>match</key>
+            <string>\s*:\s*</string>
+            <key>captures</key>
+            <dict>
+              <key>0</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.separator.key-value.stylus</string>
+              </dict>
+            </dict>
+          </dict>
           <dict>
             <key>match</key>
             <string>(?x)
@@ -538,9 +604,22 @@
             <key>name</key>
             <string>keyword.operator.logic.media.stylus</string>
           </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.definition.parameters.start.stylus</string>
+          </dict>
         </dict>
         <key>end</key>
         <string>\)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.definition.parameters.end.stylus</string>
+          </dict>
+        </dict>
         <key>patterns</key>
         <array>
           <dict>
@@ -595,13 +674,15 @@
                 <string>#variable</string>
               </dict>
             </array>
+            <key>name</key>
+            <string>meta.at-rule.media.stylus</string>
           </dict>
         </array>
       </dict>
       <key>pseudo-nth</key>
       <dict>
         <key>begin</key>
-        <string>(:(nth-child|nth-last-child|nth-of-type|nth-last-of-type|nth-match|nth-last-match|nth-column|nth-last-column))\s*\(</string>
+        <string>((:)(?:nth-child|nth-last-child|nth-of-type|nth-last-of-type|nth-match|nth-last-match|nth-column|nth-last-column))\s*(\()</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
@@ -609,9 +690,27 @@
             <key>name</key>
             <string>entity.other.attribute-name.pseudo-class.stylus</string>
           </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>puncutation.definition.entity.stylus</string>
+          </dict>
+          <key>3</key>
+          <dict>
+            <key>name</key>
+            <string>puncutation.definition.parameters.start.stylus</string>
+          </dict>
         </dict>
         <key>end</key>
         <string>\)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>puncutation.definition.parameters.end.stylus</string>
+          </dict>
+        </dict>
         <key>patterns</key>
         <array>
           <dict>
@@ -630,22 +729,30 @@
           </dict>
           <dict>
             <key>match</key>
-            <string>\d+</string>
+            <string>\b(\d+)?n\b</string>
+            <key>captures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>constant.numeric.stylus</string>
+              </dict>
+            </dict>
             <key>name</key>
-            <string>constant.numeric.stylus</string>
+            <string>variable.language.stylus</string>
           </dict>
           <dict>
             <key>match</key>
-            <string>\bn\b</string>
+            <string>\d+</string>
             <key>name</key>
-            <string>variable.language.stylus</string>
+            <string>constant.numeric.stylus</string>
           </dict>
         </array>
       </dict>
       <key>pseudo-not</key>
       <dict>
         <key>begin</key>
-        <string>(:not)\s*\(</string>
+        <string>((:)not)\s*(\()</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
@@ -653,9 +760,27 @@
             <key>name</key>
             <string>entity.other.attribute-name.pseudo-element.stylus</string>
           </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>puncutation.definition.entity.stylus</string>
+          </dict>
+          <key>3</key>
+          <dict>
+            <key>name</key>
+            <string>puncutation.definition.parameters.start.stylus</string>
+          </dict>
         </dict>
         <key>end</key>
         <string>\)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>puncutation.definition.parameters.end.stylus</string>
+          </dict>
+        </dict>
         <key>patterns</key>
         <array>
           <dict>
@@ -670,25 +795,49 @@
         <array>
           <dict>
             <key>match</key>
-            <string>:(active|checked|default|disabled|empty|enabled|first-child|first-of-type|first|fullscreen|focus|hover|indeterminate|in-range|invalid|last-child|last-of-type|left|link|only-child|only-of-type|optional|out-of-range|read-only|read-write|required|right|root|scope|target|valid|visited)\b</string>
+            <string>(:)(active|checked|default|disabled|empty|enabled|first-child|first-of-type|first|fullscreen|focus|hover|indeterminate|in-range|invalid|last-child|last-of-type|left|link|only-child|only-of-type|optional|out-of-range|read-only|read-write|required|right|root|scope|target|valid|visited)\b</string>
+            <key>captures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>puncutation.definition.entity.stylus</string>
+              </dict>
+            </dict>
             <key>name</key>
             <string>entity.other.attribute-name.pseudo-class.stylus</string>
           </dict>
           <dict>
             <key>match</key>
-            <string>:?:(before|after)\b</string>
+            <string>(:?:)(before|after)\b</string>
+            <key>captures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>puncutation.definition.entity.stylus</string>
+              </dict>
+            </dict>
             <key>name</key>
             <string>entity.other.attribute-name.pseudo-element.stylus</string>
           </dict>
           <dict>
             <key>match</key>
-            <string>::(first-letter|first-number|selection)\b</string>
+            <string>(::)(first-letter|first-number|selection)\b</string>
+            <key>captures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>puncutation.definition.entity.stylus</string>
+              </dict>
+            </dict>
             <key>name</key>
             <string>entity.other.attribute-name.pseudo-element.stylus</string>
           </dict>
           <dict>
             <key>match</key>
-            <string>(:dir)\s*(\((ltr|rtl)?\))?</string>
+            <string>((:)dir)\s*(?:(\()(ltr|rtl)?(\)))?</string>
             <key>captures</key>
             <dict>
               <key>1</key>
@@ -696,16 +845,31 @@
                 <key>name</key>
                 <string>entity.other.attribute-name.pseudo-element.stylus</string>
               </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>puncutation.definition.entity.stylus</string>
+              </dict>
               <key>3</key>
               <dict>
                 <key>name</key>
+                <string>puncutation.definition.parameters.start.stylus</string>
+              </dict>
+              <key>4</key>
+              <dict>
+                <key>name</key>
                 <string>constant.language.stylus</string>
+              </dict>
+              <key>5</key>
+              <dict>
+                <key>name</key>
+                <string>puncutation.definition.parameters.end.stylus</string>
               </dict>
             </dict>
           </dict>
           <dict>
             <key>match</key>
-            <string>(:lang)\s*(\((\w+(-\w+)?)?\))?</string>
+            <string>((:)lang)\s*(?:(\()(\w+(-\w+)?)?(\)))?</string>
             <key>captures</key>
             <dict>
               <key>1</key>
@@ -713,10 +877,25 @@
                 <key>name</key>
                 <string>entity.other.attribute-name.pseudo-element.stylus</string>
               </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>puncutation.definition.entity.stylus</string>
+              </dict>
               <key>3</key>
               <dict>
                 <key>name</key>
+                <string>puncutation.definition.parameters.start.stylus</string>
+              </dict>
+              <key>4</key>
+              <dict>
+                <key>name</key>
                 <string>constant.language.stylus</string>
+              </dict>
+              <key>5</key>
+              <dict>
+                <key>name</key>
+                <string>puncutation.definition.parameters.end.stylus</string>
               </dict>
             </dict>
           </dict>
@@ -739,7 +918,7 @@
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>punctuation.definition.entity.stylus</string>
+            <string>punctuation.definition.entity.start.stylus</string>
           </dict>
         </dict>
         <key>end</key>
@@ -749,7 +928,7 @@
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>punctuation.definition.entity.stylus</string>
+            <string>punctuation.definition.entity.end.stylus</string>
           </dict>
         </dict>
         <key>patterns</key>
@@ -987,7 +1166,7 @@
           </dict>
         </array>
         <key>end</key>
-        <string>$|;|\{</string>
+        <string>$|;|(?=\{)</string>
       </dict>
       <dict>
         <key>begin</key>
@@ -1008,7 +1187,7 @@
           </dict>
         </array>
         <key>end</key>
-        <string>$|\{</string>
+        <string>$|(?=\{)</string>
       </dict>
       <dict>
         <key>begin</key>
@@ -1048,6 +1227,10 @@
       <dict>
         <key>include</key>
         <string>#conditionals</string>
+      </dict>
+      <dict>
+        <key>include</key>
+        <string>#return</string>
       </dict>
       <dict>
         <key>begin</key>
@@ -1092,6 +1275,8 @@
             <string>#expression</string>
           </dict>
         </array>
+        <key>name</key>
+        <string>meta.function-call.stylus</string>
       </dict>
       <dict>
         <key>begin</key>
@@ -1140,6 +1325,8 @@
             <string>#expression</string>
           </dict>
         </array>
+        <key>name</key>
+        <string>meta.function-call.stylus</string>
       </dict>
       <dict>
         <key>begin</key>
@@ -1194,10 +1381,8 @@
         <key>patterns</key>
         <array>
           <dict>
-            <key>match</key>
-            <string>\s*,\s*</string>
-            <key>name</key>
-            <string>meta.selector.delimiter.stylus</string>
+            <key>include</key>
+            <string>#comma</string>
           </dict>
           <dict>
             <key>match</key>
@@ -1227,7 +1412,6 @@
         <string>(?x)                # multi-line regex definition mode
 (?&lt;=^|;|{)\s*    # starts after begining of line, '{' or ';''
 (?=                 # lookahead for
-    (?&lt;!return)     # FIXME deal with this properly
     (
      [a-zA-Z0-9_-]  # then a letter
      |              # or
@@ -1262,9 +1446,25 @@
           </dict>
           <dict>
             <key>begin</key>
-            <string>(?&lt;!^|;|{)\s*[:\s]</string>
+            <string>(?&lt;!^|;|{)\s*(?:(:)|\s)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.separator.key-value.stylus</string>
+              </dict>
+            </dict>
             <key>end</key>
-            <string>(?=\}|;)|(?=(?&lt;!\,)\s*\n)</string>
+            <string>(;)|(?=\})|(?=(?&lt;!\,)\s*\n)</string>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.terminator.rule.stylus</string>
+              </dict>
+            </dict>
             <key>patterns</key>
             <array>
               <dict>
@@ -1339,6 +1539,18 @@
       <dict>
         <key>include</key>
         <string>#function-call</string>
+      </dict>
+      <dict>
+        <key>match</key>
+        <string>\{</string>
+        <key>name</key>
+        <string>punctuation.section.start.stylus</string>
+      </dict>
+      <dict>
+        <key>match</key>
+        <string>\}</string>
+        <key>name</key>
+        <string>punctuation.section.end.stylus</string>
       </dict>
     </array>
   </dict>

@@ -30,7 +30,7 @@ repository:
         beginCaptures:
             0: { name: punctuation.section.embedded.start.stylus }
         endCaptures:
-            1: { name: punctuation.section.embedded.end.stylus }
+            0: { name: punctuation.section.embedded.end.stylus }
         patterns:
             - { include: '#expression' }
         name: stylus.embedded.source
@@ -117,7 +117,10 @@ repository:
                 begin: (hsla?|rgba?)\s*(\()
                 beginCaptures:
                     1: { name: keyword.language.function.misc.stylus }
+                    2: { name: punctuation.definition.parameters.start.stylus }
                 end: \)
+                endCaptures:
+                    0: { name: punctuation.definition.parameters.end.stylus }
                 patterns:
                     -
                         # interger values
@@ -132,11 +135,11 @@ repository:
                             (?:\s*(,)\s*((0?\.[0-9]+)|[0-1]))?
                         captures:
                             1: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.red.stylus }
-                            2: { name: punctuation.delimiter.stylus }
+                            2: { name: punctuation.delimiter.comma.stylus }
                             3: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.green.stylus }
-                            4: { name: punctuation.delimiter.stylus }
+                            4: { name: punctuation.delimiter.comma.stylus }
                             5: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus }
-                            6: { name: punctuation.delimiter.stylus }
+                            6: { name: punctuation.delimiter.comma.stylus }
                             7: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.alpha.stylus }
                     -
                         # percentages
@@ -150,14 +153,19 @@ repository:
                             ((?:[0-9]{1,2}|100)%)    # blue
                         captures:
                             1: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.red.stylus }
-                            2: { name: punctuation.delimiter.stylus }
+                            2: { name: punctuation.delimiter.comma.stylus }
                             3: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.green.stylus }
-                            4: { name: punctuation.delimiter.stylus }
+                            4: { name: punctuation.delimiter.comma.stylus }
                             5: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus }
             - { include: '#numeric-values' }
 
+    comma:
+        match: '\s*,\s*'
+        name: punctuation.delimiter.comma.stylus
+
     expression:
         patterns:
+            - { include: '#comma' }
             - { include: '#iteration' }
             - { include: '#conditionals' }
             - { include: '#language-operators' }
@@ -205,11 +213,25 @@ repository:
         patterns:
             - { include: '#expression' }
 
+    return:
+        begin: "^\s*(return)"
+        beginCaptures:
+            1: { name: keyword.control.stylus }
+        end: '(;)|(?=$)'
+        endCaptures:
+            1: { name: punctuation.terminator.statement.stylus }
+        patterns:
+            - { include: '#expression' }
+
     media-query-properties:
         # Simple matching of all valid properties without checking 
         # for a propert format of "name:value" because we only
         # need to highlight the document and not validate it.
         patterns:
+            -
+                match: \s*:\s*
+                captures:
+                    0: { name: punctuation.separator.key-value.stylus }
             -
                 match: |
                     (?x)
@@ -233,7 +255,10 @@ repository:
         begin: '\s*(and)?\s*(\()\s*'
         beginCaptures:
             1: { name: keyword.operator.logic.media.stylus }
+            2: { name: punctuation.definition.parameters.start.stylus }
         end: \)
+        endCaptures:
+            0: { name: punctuation.definition.parameters.end.stylus }
         patterns:
             - { include: '#media-query-properties'}
             - { include: '#numeric-values'}
@@ -254,12 +279,17 @@ repository:
                         patterns:
                             - { include: '#media-query-list'}
                     - { include: '#variable' }
+                name: meta.at-rule.media.stylus
 
     pseudo-nth:
-        begin: '(:(nth-child|nth-last-child|nth-of-type|nth-last-of-type|nth-match|nth-last-match|nth-column|nth-last-column))\s*\('
+        begin: '((:)(?:nth-child|nth-last-child|nth-of-type|nth-last-of-type|nth-match|nth-last-match|nth-column|nth-last-column))\s*(\()'
         beginCaptures:
             1: { name: entity.other.attribute-name.pseudo-class.stylus }
+            2: { name: puncutation.definition.entity.stylus }
+            3: { name: puncutation.definition.parameters.start.stylus }
         end: \)
+        endCaptures:
+            0: { name: puncutation.definition.parameters.end.stylus }
         patterns:
             - { include: '#language-operators' }
             - { include: '#interpolation' }
@@ -267,56 +297,74 @@ repository:
                 match: \b(odd|even)\b
                 name: constant.language.stylus
             -
+                match: \b(\d+)?n\b
+                captures:
+                    1: { name: constant.numeric.stylus }
+                name: variable.language.stylus
+            -
                 match: \d+
                 name: constant.numeric.stylus
-            -
-                match: \bn\b
-                name: variable.language.stylus
 
     pseudo-not:
-        begin: '(:not)\s*\('
+        begin: '((:)not)\s*(\()'
         beginCaptures:
             1: { name: entity.other.attribute-name.pseudo-element.stylus }
+            2: { name: puncutation.definition.entity.stylus }
+            3: { name: puncutation.definition.parameters.start.stylus }
         end: \)
+        endCaptures:
+            0: { name: puncutation.definition.parameters.end.stylus }
         patterns:
             - { include: '#selector-components' }
 
     pseudo:
         patterns:
             -
-                match: ':(active|checked|default|disabled|empty|enabled|first-child|first-of-type|first|fullscreen|focus|hover|indeterminate|in-range|invalid|last-child|last-of-type|left|link|only-child|only-of-type|optional|out-of-range|read-only|read-write|required|right|root|scope|target|valid|visited)\b'
+                match: '(:)(active|checked|default|disabled|empty|enabled|first-child|first-of-type|first|fullscreen|focus|hover|indeterminate|in-range|invalid|last-child|last-of-type|left|link|only-child|only-of-type|optional|out-of-range|read-only|read-write|required|right|root|scope|target|valid|visited)\b'
+                captures:
+                    1: { name: puncutation.definition.entity.stylus }
                 name: entity.other.attribute-name.pseudo-class.stylus
 
             -
-                match: ':?:(before|after)\b'
+                match: '(:?:)(before|after)\b'
+                captures:
+                    1: { name: puncutation.definition.entity.stylus }
                 name: entity.other.attribute-name.pseudo-element.stylus
 
             -
-                match: '::(first-letter|first-number|selection)\b'
+                match: '(::)(first-letter|first-number|selection)\b'
+                captures:
+                    1: { name: puncutation.definition.entity.stylus }
                 name: entity.other.attribute-name.pseudo-element.stylus
 
             -
-                match: '(:dir)\s*(\((ltr|rtl)?\))?'
+                match: '((:)dir)\s*(?:(\()(ltr|rtl)?(\)))?'
                 captures:
                     1: { name: entity.other.attribute-name.pseudo-element.stylus }
-                    3: { name: constant.language.stylus }
+                    2: { name: puncutation.definition.entity.stylus }
+                    3: { name: puncutation.definition.parameters.start.stylus }
+                    4: { name: constant.language.stylus }
+                    5: { name: puncutation.definition.parameters.end.stylus }
 
             -
-                match: '(:lang)\s*(\((\w+(-\w+)?)?\))?'
+                match: '((:)lang)\s*(?:(\()(\w+(-\w+)?)?(\)))?'
                 captures:
                     1: { name: entity.other.attribute-name.pseudo-element.stylus }
-                    3: { name: constant.language.stylus }
+                    2: { name: puncutation.definition.entity.stylus }
+                    3: { name: puncutation.definition.parameters.start.stylus }
+                    4: { name: constant.language.stylus }
+                    5: { name: puncutation.definition.parameters.end.stylus }
 
             - { include: '#pseudo-nth' }
             - { include: '#pseudo-not' }
 
     attribute-selector:
-        begin: "\\["
+        begin: "\["
         beginCaptures:
-            0: { name: punctuation.definition.entity.stylus }
-        end: "\\]"
+            0: { name: punctuation.definition.entity.start.stylus }
+        end: "\]"
         endCaptures:
-            0: { name: punctuation.definition.entity.stylus }
+            0: { name: punctuation.definition.entity.end.stylus }
         patterns:
             -
                 begin: '(?&lt;=\[)|(?&lt;=\{)'
@@ -421,7 +469,7 @@ patterns:
             2: { name: variable.other.animation-name.stylus }
         patterns:
             - { include: '#string-quoted' }
-        end: $|;|\{
+        end: $|;|(?=\{)
 
     -   # Media query
         begin: '^\s*(@media)\s*'
@@ -429,7 +477,7 @@ patterns:
             1: { name: keyword.control.at-rule.media.stylus }
         patterns:
             - { include: '#media-query'}
-        end: $|\{
+        end: $|(?=\{)
 
     -   # Variable assignment. There's a check for "@" here
         # because Stylus doesn't throw error but doesn't
@@ -445,6 +493,7 @@ patterns:
 
     - { include: '#iteration' }
     - { include: '#conditionals' }
+    - { include: '#return' }
 
     -   # Function definition (with curly braces)
         begin: |
@@ -467,6 +516,7 @@ patterns:
             1: { name: punctuation.definition.parameters.end.stylus }
         patterns:
             - { include: '#expression' }
+        name: meta.function-call.stylus
 
     -   # Call to function as property (mixin)
         begin: |
@@ -492,6 +542,7 @@ patterns:
             1: { name: punctuation.definition.parameters.end.stylus }
         patterns:
             - { include: '#expression' }
+        name: meta.function-call.stylus
 
     -   # CSS selectors. Since we can't rely on curly braces or indentation,
         # the only option here is to test whether line starts with valid
@@ -549,9 +600,7 @@ patterns:
                 )
             )
         patterns:
-            -   # for keyframe animation 
-                match: '\s*,\s*'
-                name: meta.selector.delimiter.stylus
+            - { include: '#comma' }
             -   # for keyframe animation 
                 match: '\d+(\.\d+)?%|from|to'
                 name: entity.other.animation-keyframe.stylus
@@ -567,7 +616,6 @@ patterns:
             (?x)                # multi-line regex definition mode
             (?&lt;=^|;|{)\s*    # starts after begining of line, '{' or ';''
             (?=                 # lookahead for
-                (?&lt;!return)     # FIXME deal with this properly
                 (
                  [a-zA-Z0-9_-]  # then a letter
                  |              # or
@@ -593,8 +641,12 @@ patterns:
             - { include: '#comments' }
             - { include: '#interpolation' }
             -
-                begin: '(?&lt;!^|;|{)\s*[:\s]'
-                end: '(?=\}|;)|(?=(?&lt;!\,)\s*\n)'
+                begin: '(?&lt;!^|;|{)\s*(?:(:)|\s)'
+                beginCaptures:
+                    1: { name: punctuation.separator.key-value.stylus }
+                end: '(;)|(?=\})|(?=(?&lt;!\,)\s*\n)'
+                endCaptures:
+                    1: { name: punctuation.terminator.rule.stylus }
                 patterns:
                     - { include: '#comments' }
                     - { include: '#expression' }
@@ -622,3 +674,10 @@ patterns:
     - { include: '#property-reference' }
     - { include: '#function-call' }
 
+    -
+        match: '\{'
+        name: punctuation.section.start.stylus
+
+    -
+        match: '\}'
+        name: punctuation.section.end.stylus
