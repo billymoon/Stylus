@@ -7,7 +7,7 @@
 @import "test.css";
 @charset "utf-8";
 @font-face {
-    font-family: Ubuntu;
+    font-family: Ubuntu, sans-serif;
     src: url('fonts/pompadur.ttf');
 }
 
