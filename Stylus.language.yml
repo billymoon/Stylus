@@ -17,8 +17,58 @@ repository:
                 name: string.quoted.double.stylus
 
     variable:
-        match: '([\w$-]+)'
+        match: '([\w$-]+\b)'
         name: variable.other.stylus
+
+    hash-definition:
+        begin: \{
+        beginCaptures:
+            0: { name: punctuation.section.embedded.start.stylus }
+        end: \}
+        endCaptures:
+            0: { name: punctuation.section.embedded.end.stylus }
+        patterns:
+            -
+                begin: |
+                    (?x)
+                    (?:
+                        ([\w$-]+)
+                        |
+                        ('[^']*')
+                        |
+                        ("[^"]*")
+                    )
+                    \s*
+                    (:)
+                    \s*
+                beginCaptures:
+                    1: { name: support.type.property-name.stylus }
+                    2: { name: string.quoted.single.stylus }
+                    3: { name: string.quoted.double.stylus }
+                    4: { name: punctuation.separator.key-value.stylus }
+                patterns:
+                    - { include: '#expression' }
+                end: '(;)|(?=\}|$)'
+                endCaptures:
+                    1: { name: punctuation.terminator.statement.stylus }
+        name: meta.hash.stylus
+
+    hash-access:
+        begin: '(?=[\w$-]+[.\[])'
+        end: (?=[^''""\[\]\w.$-]|\s|$)
+        patterns:
+            -
+                match: \.
+                name: punctuation.delimiter.hash.stylus
+            -
+                match: \[
+                name: punctuation.definition.entity.start.stylus
+            -
+                match: \]
+                name: punctuation.definition.entity.end.stylus
+            - { include: '#string-quoted' }
+            - { include: '#variable' }
+        name: meta.hash-access.stylus
 
     escape:
         match: '\\.'
@@ -170,10 +220,12 @@ repository:
             - { include: '#conditionals' }
             - { include: '#language-operators' }
             - { include: '#language-keywords' }
+            - { include: '#hash-definition' }
             - { include: '#color-values' }
             - { include: '#function-call' }
             - { include: '#string-quoted' }
             - { include: '#escape' }
+            - { include: '#hash-access' }
             - { include: '#language-constants' }
             - { include: '#language-property-value-constants' }
             - { include: '#property-reference' }
@@ -482,11 +534,15 @@ patterns:
     -   # Variable assignment. There's a check for "@" here
         # because Stylus doesn't throw error but doesn't
         # compile properly either
-        begin: '(?&lt;=^|;|})\s*(@)?([\w$-]+)\s*([?:]?=)'
-        beginCaptures:
-            1: { name: invalid.illegal.bad-character.stylus }
-            2: { name: variable.other.stylus }
-            3: { name: keyword.operator.assignment.stylus }
+        begin: |
+            (?x)
+            (?&lt;=^|;|})
+            \s*
+            (?=
+                [\[\]'".\w$-]+
+                \s*
+                ([?:]?=)
+            )
         patterns:
             - { include: '#expression' }
         end: $|;

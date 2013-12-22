@@ -40,9 +40,130 @@
       <key>variable</key>
       <dict>
         <key>match</key>
-        <string>([\w$-]+)</string>
+        <string>([\w$-]+\b)</string>
         <key>name</key>
         <string>variable.other.stylus</string>
+      </dict>
+      <key>hash-definition</key>
+      <dict>
+        <key>begin</key>
+        <string>\{</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.section.embedded.start.stylus</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>\}</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.section.embedded.end.stylus</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>begin</key>
+            <string>(?x)
+(?:
+    ([\w$-]+)
+    |
+    ('[^']*')
+    |
+    ("[^"]*")
+)
+\s*
+(:)
+\s*
+</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>support.type.property-name.stylus</string>
+              </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>string.quoted.single.stylus</string>
+              </dict>
+              <key>3</key>
+              <dict>
+                <key>name</key>
+                <string>string.quoted.double.stylus</string>
+              </dict>
+              <key>4</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.separator.key-value.stylus</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#expression</string>
+              </dict>
+            </array>
+            <key>end</key>
+            <string>(;)|(?=\}|$)</string>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.terminator.statement.stylus</string>
+              </dict>
+            </dict>
+          </dict>
+        </array>
+        <key>name</key>
+        <string>meta.hash.stylus</string>
+      </dict>
+      <key>hash-access</key>
+      <dict>
+        <key>begin</key>
+        <string>(?=[\w$-]+[.\[])</string>
+        <key>end</key>
+        <string>(?=[^''""\[\]\w.$-]|\s|$)</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>match</key>
+            <string>\.</string>
+            <key>name</key>
+            <string>punctuation.delimiter.hash.stylus</string>
+          </dict>
+          <dict>
+            <key>match</key>
+            <string>\[</string>
+            <key>name</key>
+            <string>punctuation.definition.entity.start.stylus</string>
+          </dict>
+          <dict>
+            <key>match</key>
+            <string>\]</string>
+            <key>name</key>
+            <string>punctuation.definition.entity.end.stylus</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#string-quoted</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#variable</string>
+          </dict>
+        </array>
+        <key>name</key>
+        <string>meta.hash-access.stylus</string>
       </dict>
       <key>escape</key>
       <dict>
@@ -393,6 +514,10 @@
           </dict>
           <dict>
             <key>include</key>
+            <string>#hash-definition</string>
+          </dict>
+          <dict>
+            <key>include</key>
             <string>#color-values</string>
           </dict>
           <dict>
@@ -406,6 +531,10 @@
           <dict>
             <key>include</key>
             <string>#escape</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#hash-access</string>
           </dict>
           <dict>
             <key>include</key>
@@ -1191,25 +1320,15 @@
       </dict>
       <dict>
         <key>begin</key>
-        <string>(?&lt;=^|;|})\s*(@)?([\w$-]+)\s*([?:]?=)</string>
-        <key>beginCaptures</key>
-        <dict>
-          <key>1</key>
-          <dict>
-            <key>name</key>
-            <string>invalid.illegal.bad-character.stylus</string>
-          </dict>
-          <key>2</key>
-          <dict>
-            <key>name</key>
-            <string>variable.other.stylus</string>
-          </dict>
-          <key>3</key>
-          <dict>
-            <key>name</key>
-            <string>keyword.operator.assignment.stylus</string>
-          </dict>
-        </dict>
+        <string>(?x)
+(?&lt;=^|;|})
+\s*
+(?=
+    [\[\]'".\w$-]+
+    \s*
+    ([?:]?=)
+)
+</string>
         <key>patterns</key>
         <array>
           <dict>

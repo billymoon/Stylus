@@ -156,6 +156,21 @@ i = ''
 n ?= 5
 test := 5
 
+// Hashes
+hash = {
+  somekey: true
+  'escaped key 1' : 'value'
+  "escaped key 2" : 'value'
+}
+hashOneLine = { somekey: true }
+hashEmpty = {}
+hash['key'] = 'value'
+hash.somekey = false
+hash.nested = { somekey: false }
+hash.nested.somekey = true
+hash['nested'].somekey = true
+hash.nested['somekey'] = true
+
 // Complex case of a property
 a
   /* */fo{i}nt-family{n+1}fsd #ccc  sdfs // 213px
