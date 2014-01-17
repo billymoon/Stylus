@@ -98,7 +98,8 @@ body
 // Multiple selectors separated by line break
 html,
 body
-  color white
+  font
+    color red
   // vendor prefix
   -webkit-background-clip: border-box
 
@@ -113,7 +114,7 @@ body
 
 // Compound selectors
 body.someclass#someid
-  color red
+  font normal 18px/30px OpenSans, Verdana, sans-serif
 
 // Multiple selectors separated by comma
 textarea, input
