@@ -69,6 +69,10 @@
         <key>patterns</key>
         <array>
           <dict>
+            <key>include</key>
+            <string>#single-line-comment</string>
+          </dict>
+          <dict>
             <key>begin</key>
             <string>(?x)
 (?:
@@ -1228,7 +1232,7 @@
           </dict>
         </array>
       </dict>
-      <key>comments</key>
+      <key>single-line-comment</key>
       <dict>
         <key>patterns</key>
         <array>
@@ -1245,6 +1249,16 @@
             <string>(\/\/).*$</string>
             <key>name</key>
             <string>comment.line.stylus</string>
+          </dict>
+        </array>
+      </dict>
+      <key>comments</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#single-line-comment</string>
           </dict>
           <dict>
             <key>begin</key>

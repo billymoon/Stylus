@@ -160,6 +160,7 @@ test := 5
 // Hashes
 hash = {
   somekey: true
+  // commented: true
   'escaped key 1' : 'value'
   "escaped key 2" : 'value'
 }
