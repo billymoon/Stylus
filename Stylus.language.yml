@@ -223,6 +223,7 @@ repository:
             - { include: '#language-keywords' }
             - { include: '#hash-definition' }
             - { include: '#color-values' }
+            - { include: '#url' }
             - { include: '#function-call' }
             - { include: '#string-quoted' }
             - { include: '#escape' }
@@ -236,6 +237,22 @@ repository:
         # Reference to another property
         match: '@[a-z-]+'
         name: variable.other.property.stylus
+
+    url:
+        begin: '(url)\s*(\()'
+        beginCaptures:
+            1: { name: entity.function-name.stylus }
+            2: { name: punctuation.definition.parameters.start.stylus }
+        end: '(\))'
+        endCaptures:
+            1: { name: punctuation.definition.parameters.end.stylus }
+        patterns:
+            - { include: '#string-quoted' }
+            - { include: '#language-constants' }
+            - { include: '#language-property-value-constants' }
+            - { include: '#property-reference' }
+            - { include: '#variable' }
+        name: meta.function-call.stylus
 
     function-call:
         # Function call (or definition when no curly braces are used)

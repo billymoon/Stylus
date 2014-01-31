@@ -187,6 +187,13 @@ somefunction(a, b = 16px, c = b, d...)
     &_{x}_{y}
       color x if y
 
+// built-in functions
+.foo
+  test = 5
+  jpg = "png"
+  background-image url(../test.jpg) // will yeild url("../5.png")
+  background-image url("../test.jpg")
+
 // Placeholder selectors
 $foo
   color red
