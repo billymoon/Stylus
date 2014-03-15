@@ -1102,7 +1102,7 @@
       <key>attribute-selector</key>
       <dict>
         <key>begin</key>
-        <string>\[</string>
+        <string>\[(?=[^\]]*\])</string>
         <key>beginCaptures</key>
         <dict>
           <key>0</key>

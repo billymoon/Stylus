@@ -429,7 +429,7 @@ repository:
             - { include: '#pseudo-not' }
 
     attribute-selector:
-        begin: "\["
+        begin: "\[(?=[^\]]*\])"
         beginCaptures:
             0: { name: punctuation.definition.entity.start.stylus }
         end: "\]"
