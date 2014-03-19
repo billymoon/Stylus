@@ -167,11 +167,19 @@ hash = {
 hashOneLine = { somekey: true }
 hashEmpty = {}
 hash['key'] = 'value'
+hash['other'] = hash['key']
 hash.somekey = false
 hash.nested = { somekey: false }
 hash.nested.somekey = true
 hash['nested'].somekey = true
 hash.nested['somekey'] = true
+
+// making sure this isn't considered an assignment
+input[type=text] {
+  &:focus {
+    text-align: center;
+  }
+}
 
 // Complex case of a property
 a

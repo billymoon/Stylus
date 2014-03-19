@@ -134,7 +134,7 @@
       <key>hash-access</key>
       <dict>
         <key>begin</key>
-        <string>(?=[\w$-]+[.\[])</string>
+        <string>(?=[\w$-]+(?:\.|\[[^\]=]*\]))</string>
         <key>end</key>
         <string>(?=[^''""\[\]\w.$-]|\s|$)</string>
         <key>patterns</key>
@@ -1153,10 +1153,6 @@
             <string>#interpolation</string>
           </dict>
           <dict>
-            <key>include</key>
-            <string>#string-quoted</string>
-          </dict>
-          <dict>
             <key>match</key>
             <string>([|~]?=)</string>
             <key>captures</key>
@@ -1166,12 +1162,11 @@
                 <key>name</key>
                 <string>keyword.operator.stylus</string>
               </dict>
-              <key>2</key>
-              <dict>
-                <key>name</key>
-                <string>string.unquoted.stylus</string>
-              </dict>
             </dict>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#string-quoted</string>
           </dict>
           <dict>
             <key>match</key>
@@ -1398,6 +1393,7 @@
     [\[\]'".\w$-]+
     \s*
     ([?:]?=)
+    (?![^\[]*\])
 )
 </string>
         <key>patterns</key>

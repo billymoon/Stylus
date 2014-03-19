@@ -55,7 +55,7 @@ repository:
         name: meta.hash.stylus
 
     hash-access:
-        begin: '(?=[\w$-]+[.\[])'
+        begin: '(?=[\w$-]+(?:\.|\[[^\]=]*\]))'
         end: (?=[^''""\[\]\w.$-]|\s|$)
         patterns:
             -
@@ -446,12 +446,11 @@ repository:
                         captures:
                             0: { name: entity.other.attribute-name.stylus }
             - { include: '#interpolation' }
-            - { include: '#string-quoted' }
             -
                 match: ([|~]?=)
                 captures:
                     1: { name: keyword.operator.stylus }
-                    2: { name: string.unquoted.stylus }
+            - { include: '#string-quoted' }
             -
                 match: .
                 captures:
@@ -564,6 +563,7 @@ patterns:
                 [\[\]'".\w$-]+
                 \s*
                 ([?:]?=)
+                (?![^\[]*\])
             )
         patterns:
             - { include: '#expression' }
