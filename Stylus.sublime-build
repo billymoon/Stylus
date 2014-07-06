@@ -5,12 +5,12 @@
 
   "osx":
   {
-    "path": "/usr/local/bin:$PATH"
+    "path": "/usr/local/bin:/usr/local/share/npm/bin:$PATH"
   },
 
   "linux":
   {
-    "path": "/usr/local/bin:$PATH"
+    "path": "/usr/local/bin:/usr/local/share/npm/bin:$PATH"
   },
 
   "windows":
@@ -22,7 +22,7 @@
     {
       "name": "compress",
       "cmd": ["stylus", "-c", "$file"],
-      
+
       "windows":
       {
         "cmd": ["stylus.cmd", "-c", "$file"]

@@ -4,7 +4,7 @@ Includes build system and syntax highlighting for [stylus](http://learnboost.git
 
 ## Notice to existing users
 
-In order to provide better integration with [Emmet](https://sublime.wbond.net/packages/Emmet) and [Hayaku](https://sublime.wbond.net/packages/Hayaku%20-%20tools%20for%20writing%20CSS%20faster) packages that allow dynamic expansion of CSS properties, snippets that were previously a part of this package are now distrubited separately as new package called [Sublime-Snippets](https://github.com/billymoon/Stylus-Snippets) (available via [Package Control](https://sublime.wbond.net/)). 
+In order to provide better integration with [Emmet](https://sublime.wbond.net/packages/Emmet) and [Hayaku](https://sublime.wbond.net/packages/Hayaku%20-%20tools%20for%20writing%20CSS%20faster) packages that allow dynamic expansion of CSS properties, snippets that were previously a part of this package are now distrubited separately as new package called [Sublime-Snippets](https://github.com/billymoon/Stylus-Snippets) (available via [Package Control](https://sublime.wbond.net/)).
 
 ## Requirements
 
@@ -20,6 +20,36 @@ The easiest way to install this is with [Package Control](https://sublime.wbond.
 
 Package Control will automatically keep the package up to date with the latest version.
 
+# Settings
+
+Go to `Preferences > Package Settings > CoffeeScript > Settings - User` to change settings.
+
+You can set paths to the stylus binary, and other plugin settings including `compileOnSave` which is off by default, `compress` and output paths.
+
+Full details in the comments in `Preferences > Package Settings > CoffeeScript > Settings - Default`
+
+## Project settings
+
+Go to `Project > Edit Project` to change project settings.
+
+```Javascript
+{
+    "folders":
+    [
+        ...
+    ],
+    "settings":
+    {
+        "Stylus":
+        {
+            "compress": false,
+            "compileOnSave": true,
+            "compileDir": "out"
+        }
+    }
+}
+```
+
 ## Issues & Feature Requests
 
 Please use [GitHub Issue Tracker](https://github.com/billymoon/Stylus/issues) to report any bugs and make feature requests.
@@ -28,6 +58,10 @@ Please use [GitHub Issue Tracker](https://github.com/billymoon/Stylus/issues) to
 
  * [Billy Moon](https://github.com/billymoon) ([billy@itaccess.org](mailto:billy@itaccess.org))
  * [Dmitriy Kubyshkin](https://github.com/grassator) ([dmitriy@kubyshkin.ru](mailto:dmitriy@kubyshkin.ru))
+
+## Thanks
+
+ * [Logan Howlett](https://github.com/aponxi) The compileOnSave, Python script and settings file have been forked from [aponxi](https://github.com/aponxi/sublime-better-coffeescript)
 
 ## Development
 
