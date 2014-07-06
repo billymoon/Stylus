@@ -90,7 +90,10 @@ class CompileCommand(TextCommand):
         compile_dir = settings_get('compileDir')
         source_file = self.view.file_name()
         source_dir = os.path.normcase(os.path.dirname(source_file))
-        project_file = self.view.window().project_file_name()
+        try:
+            project_file = self.view.window().project_file_name()
+        except AttributeError:
+            project_file = ''
         if project_file:
             project_dir = os.path.normcase(os.path.dirname(project_file))
         compile_paths = settings_get('compilePaths')
