@@ -13,13 +13,13 @@
 		The directory containing your coffee binary. Usually
 		/usr/local/bin or /usr/bin.
 	*/
-	"binDir": "/usr/local/bin"
+	"binDir": "/usr/local/bin",
 
 
 	/*
 		## Enable Compiling on save. It will compile into the same folder.
 	*/
-,	"compileOnSave": true
+	"compileOnSave": false,
 
 
 	/*
@@ -35,13 +35,13 @@
 		Directory is absolute if specified such as
 			compileDir": "/home/logan/Desktop/out"
 	*/
-,	"compileDir": false
+	"compileDir": false,
 
 
 	/*
 		Enable css compression
 	*/
-,	"compress": false
+	"compress": false,
 
 
 	/*
@@ -65,5 +65,5 @@
 			"/home/user/projects/main.stylus" will compile to "/home/user/projects/css/main.css"
 
 	*/
-,	"compilePaths": false
+	"compilePaths": false
 }

@@ -24,77 +24,9 @@ Package Control will automatically keep the package up to date with the latest v
 
 Go to `Preferences > Package Settings > CoffeeScript > Settings - User` to change settings.
 
-```Javascript
-{
-    /*
-        The directories you would like to include in $PATH environment variable.
-        Use this if your node installation is at a seperate location and getting errors such as `cannot find node executable`
+You can set paths to the stylus binary, and other plugin settings including `compileOnSave` which is off by default, `compress` and output paths.
 
-        example:
-        "envPATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    */
-    "envPATH": "",
-
-
-    /*
-        The directory containing your coffee binary. Usually
-        /usr/local/bin or /usr/bin.
-    */
-    "binDir": "/usr/local/bin"
-
-
-    /*
-        ## Enable Compiling on save. It will compile into the same folder.
-    */
-,   "compileOnSave": true
-
-
-    /*
-        ## Enable compiling to a specific directory.
-        #### Description
-
-        if it is a string like 'some/directory' then `-o some/directory` will be added to `coffee` compiler.
-        if it is false or not string then it will compile your `script.coffee` to the directory it is in.
-
-        #### Example:
-        Directory is relative to the file you are editing if specified such as
-            compileDir": "out"
-        Directory is absolute if specified such as
-            compileDir": "/home/logan/Desktop/out"
-    */
-,   "compileDir": false
-
-
-    /*
-        Enable css compression
-    */
-,   "compress": false
-
-
-    /*
-        ## Enable compiling to a specific relative directories.
-
-        #### Example:
-        Set absolute path for compile dir:
-            "compileDir": "/home/user/projects/css"
-        And specified folders
-            "relativeDir": "/home/user/projects/stylus"
-            "compilePaths":
-            {
-                "/home/user/projects/stylus": "/home/user/projects/first/css",
-                "/home/user/projects/second/stylus": "../css",
-            }
-
-        So
-            "/home/user/projects/stylus/app.stylus" will compile to "/home/user/projects/first/css/app.css"
-            "/home/user/projects/stylus/models/prod.stylus" will compile to "/home/user/projects/first/css/models/prod.css"
-            "/home/user/projects/stylus/second/coffee/app2.stylus" will compile to "/home/user/projects/second/css/app2.css"
-            "/home/user/projects/main.stylus" will compile to "/home/user/projects/css/main.css"
-
-    */
-,   "compilePaths": false
-}
-```
+Full details in the comments in `Preferences > Package Settings > CoffeeScript > Settings - Default`
 
 ## Project settings
 
