@@ -82,7 +82,7 @@ def isStylus(view=None):
 
 
 
-class CompileCommand(TextCommand):
+class StyluscompileCommand(TextCommand):
     def is_enabled(self):
         return isStylus(self.view)
 
@@ -165,23 +165,6 @@ class CompileCommand(TextCommand):
 
 
 
-class Tool():
-    @staticmethod
-    def get_file_name(file_path):
-        if file_path:
-            filename = os.path.split(file_path)[-1]
-        else:
-            filename = "Unsaved File"
-        return filename
-
-    @staticmethod
-    def get_css_file_name(stylus_file_name):
-        fileName, fileExtension = os.path.splitext(stylus_file_name)
-        output_filename = fileName + '.css'
-        return output_filename
-
-
-
 class CaptureEditing(sublime_plugin.EventListener):
     def is_enabled(self, view):
         return isStylus(view)
@@ -192,4 +175,4 @@ class CaptureEditing(sublime_plugin.EventListener):
         compile_on_save = settings_get('compileOnSave', True)
         if compile_on_save is True:
             print("Compiling on save...")
-            view.run_command("compile")
+            view.run_command("styluscompile")
