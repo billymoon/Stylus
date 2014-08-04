@@ -1519,8 +1519,16 @@
         <string>(?x) # multi-line regex definition mode
 (^|\}|(?&lt;=\*/))\s*
 (?=
-    font\s*(?:$|[,.#:$+~\[]) |
-    (
+    font(?!
+        \s*:\s
+        |
+        .*?
+        (?:
+            \/|normal|bold|light(er?)|serif|sans|monospace|
+            \b\d+(?:\b|px|r?em|%)|
+            ['"][^\]]*$
+        )
+    ) | (
         (a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
         basefont|bdi|bdo|bgsound|big|blink|blockquote|body|br|button|
         canvas|caption|center|cite|code|col|colgroup|data|

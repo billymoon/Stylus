@@ -121,8 +121,15 @@ textarea, input
   border 1px solid #fff
 
 // Multiple properties separated by line
-a
-  font-size 10px
+font .a32
+  font normal
+  font bold
+  font lighter
+  font monospace
+  font 400
+  font 1.2em
+  font "Verdana"
+  font normal 18px/30px OpenSans, Verdana, sans-serif
   left 15px
 
 // Multiple properties separated by semicolon
