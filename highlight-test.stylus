@@ -112,6 +112,17 @@ body
     color black
   }
 
+// Selectors start with a symbol
+div
+  :before
+  ::before
+  ~ div
+  + div
+  > div
+  [href^="#"]
+  *
+    background-color: red
+
 // Compound selectors
 body.someclass#someid
   font normal 18px/30px OpenSans, Verdana, sans-serif
