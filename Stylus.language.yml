@@ -216,6 +216,7 @@ repository:
 
     expression:
         patterns:
+            - { include: '#single-line-comment' }
             - { include: '#comma' }
             - { include: '#iteration' }
             - { include: '#conditionals' }

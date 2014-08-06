@@ -498,6 +498,10 @@
         <array>
           <dict>
             <key>include</key>
+            <string>#single-line-comment</string>
+          </dict>
+          <dict>
+            <key>include</key>
             <string>#comma</string>
           </dict>
           <dict>

@@ -2,11 +2,11 @@
   "name": "stylus-sublime",
   "version": "2.0.0",
   "author": "Dmitriy Kubyshkin <dmitriy@kubyshkin.ru>",
-  "contributors": [ 
+  "contributors": [
     {
       "name": "Billy Moon",
       "email": "billy@itaccess.org"
-    } 
+    }
   ],
   "private": true,
   "devDependencies": {
@@ -14,6 +14,7 @@
     "grunt-convert": "*",
     "grunt-rename": "*",
     "grunt-contrib-watch": "*",
-    "matchdep": "*"
+    "matchdep": "*",
+    "stylus": "^0.47.3"
   }
 }
