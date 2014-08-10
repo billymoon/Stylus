@@ -1475,7 +1475,8 @@
 
     (^|;)           # starts at the beginning of line or at a ;
     \s*
-    ([\w$-]+)       # identifier (name)
+    (\+?\s*         # for block mixins
+     [\w$-]+)       # identifier (name)
     \s*
     (\()            # start of argument list
     (?=
@@ -1552,15 +1553,20 @@
         \s*([\s,.#\[]|:[^\s]|(?=\{))
 
     ) | (
-        [:~+&gt;\[*]         # symbols but they are valid for selector
+        [:~&gt;\[*]         # symbols but they are valid for selector
 
-    ) | (                   # for animtions
+    ) | (
+
+        \+\s*[\w$-]+\b\s*      # are an identifier starting with $
+        (?!\()              # and they can't have anything besides
+
+    ) | (                    # for animtions
 
         \d+(\.\d+)?%|(from|to)\b
 
     ) | (                   # Placeholder selectors
 
-        \$[\w$-]+\b\s*        # are an identifier starting with $
+        \$[\w$-]+\b\s*      # are an identifier starting with $
         (?=$|\{)            # and they can't have anything besides
 
     ) | (                   # CSS class

@@ -604,7 +604,8 @@ patterns:
 
                 (^|;)           # starts at the beginning of line or at a ;
                 \s*
-                ([\w$-]+)       # identifier (name)
+                (\+?\s*         # for block mixins
+                 [\w$-]+)       # identifier (name)
                 \s*
                 (\()            # start of argument list
                 (?=
@@ -662,16 +663,22 @@ patterns:
 
                 ) | (
                                         # Property can't start with these
-                    [:~+&gt;\[*]         # symbols but they are valid for selector
+                    [:~&gt;\[*]         # symbols but they are valid for selector
                                         # so use it as a recognition rule
 
-                ) | (                   # for animtions
+                ) | (
+
+                    \+\s*[\w$-]+\b\s*      # are an identifier starting with $
+                    (?!\()              # and they can't have anything besides
+                                        # that identifier in the same line
+
+                ) | (                    # for animtions
 
                     \d+(\.\d+)?%|(from|to)\b
 
                 ) | (                   # Placeholder selectors
 
-                    \$[\w$-]+\b\s*        # are an identifier starting with $
+                    \$[\w$-]+\b\s*      # are an identifier starting with $
                     (?=$|\{)            # and they can't have anything besides
                                         # that identifier in the same line
 

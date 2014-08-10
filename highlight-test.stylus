@@ -222,6 +222,14 @@ somefunction(a, b = 16px, c = b, d...)
   background-image url(../test.jpg) // will yeild url("../5.png")
   background-image url("../test.jpg")
 
+// block mixin
+bar()
+  {block}
+
+body
+  +bar()
+    width: 100%;
+
 // Placeholder selectors
 $foo
   color red
