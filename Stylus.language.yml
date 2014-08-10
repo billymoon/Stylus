@@ -635,6 +635,8 @@ patterns:
                 font(?!
                     \s*:\s
                     |
+                    -
+                    |
                     .*?
                     (?:
                         \/|normal|bold|light(er?)|serif|sans|monospace|

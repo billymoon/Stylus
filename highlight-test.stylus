@@ -133,6 +133,8 @@ textarea, input
 
 // Multiple properties separated by line
 font .a32
+  font-family font1
+  font-size base-font-size
   font normal
   font bold
   font lighter
