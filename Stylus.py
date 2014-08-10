@@ -172,7 +172,7 @@ class CaptureEditing(sublime_plugin.EventListener):
     def on_post_save(self, view):
         if not self.is_enabled(view):
             return
-        compile_on_save = settings_get('compileOnSave', True)
+        compile_on_save = settings_get('compileOnSave', False)
         if compile_on_save is True:
             print("Compiling on save...")
             view.run_command("styluscompile")
