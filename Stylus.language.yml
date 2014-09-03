@@ -663,7 +663,7 @@ patterns:
 
                 ) | (
                                         # Property can't start with these
-                    [:~&gt;\[*]         # symbols but they are valid for selector
+                    [:~&gt;\[*\/]       # symbols but they are valid for selector
                                         # so use it as a recognition rule
 
                 ) | (

@@ -1553,7 +1553,7 @@
         \s*([\s,.#\[]|:[^\s]|(?=\{))
 
     ) | (
-        [:~&gt;\[*]         # symbols but they are valid for selector
+        [:~&gt;\[*\/]       # symbols but they are valid for selector
 
     ) | (
 

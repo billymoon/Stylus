@@ -120,6 +120,7 @@ div
   + div
   > div
   [href^="#"]
+  / div
   *
     background-color: red
 
