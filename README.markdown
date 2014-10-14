@@ -22,11 +22,11 @@ Package Control will automatically keep the package up to date with the latest v
 
 # Settings
 
-Go to `Preferences > Package Settings > CoffeeScript > Settings - User` to change settings.
+Go to `Preferences > Package Settings > Stylus > Settings - User` to change settings.
 
 You can set paths to the stylus binary, and other plugin settings including `compileOnSave` which is off by default, `compress` and output paths.
 
-Full details in the comments in `Preferences > Package Settings > CoffeeScript > Settings - Default`
+Full details in the comments in `Preferences > Package Settings > Stylus > Settings - Default`
 
 ## Project settings
 
