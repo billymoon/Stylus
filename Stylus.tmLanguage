@@ -1522,7 +1522,7 @@
       <dict>
         <key>begin</key>
         <string>(?x) # multi-line regex definition mode
-(^|\}|(?&lt;=\*/))\s*
+(^|(?&lt;=\*/|\}))\s*
 (?=
     font(?!
         \s*:\s
@@ -1550,7 +1550,7 @@
         sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
         thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp)
 
-        \s*([\s,.#\[]|:[^\s]|(?=\{))
+        \s*([\s,.#\[]|:[^\s]|(?=\{|$))
 
     ) | (
         [:~&gt;\[*\/]       # symbols but they are valid for selector

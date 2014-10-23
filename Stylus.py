@@ -162,6 +162,43 @@ class StyluscompileCommand(TextCommand):
         later = lambda: sublime.status_message(status)
         sublime.set_timeout(later, 300)
 
+class StylusIndentCommand(TextCommand):
+    def is_enabled(self):
+        return isStylus(self.view)
+
+    def is_visible(self):
+        return False
+
+    def is_scope(self, offset, scope):
+        return self.view.score_selector(offset, scope) > 0
+
+    def is_selector_scope(self, offset):
+        return self.is_scope(offset, 'meta.selector.stylus')
+
+    def is_interpolation_scope(self, offset):
+        return self.is_scope(offset, 'stylus.embedded.source')
+
+    def run(self, *args, **kwargs):
+        is_selector = True
+        for region in self.view.sel():
+            left_offset = min(region.a, region.b)
+            line_region = self.view.line(region)
+            line_text = self.view.substr(line_region)
+            is_selector = is_selector and (
+                (not self.is_interpolation_scope(left_offset)) and
+                (self.is_selector_scope(left_offset) or (
+                    self.view.size() == left_offset and
+                    self.is_selector_scope(left_offset - 1)
+                ) or (
+                    re.search('\\{\\s*$', line_text)
+                ) or (
+                    re.search('^\\s*(if|else|for)\\b', line_text)
+                ))
+            )
+        snippet = "\n"
+        if is_selector:
+            snippet = "\n\t"
+        self.view.run_command('insert_snippet', { 'contents': snippet })
 
 
 

@@ -630,7 +630,7 @@ patterns:
         # unfortunately that means duplicating those regular expressions
         begin: |
             (?x) # multi-line regex definition mode
-            (^|\}|(?&lt;=\*/))\s*
+            (^|(?&lt;=\*/|\}))\s*
             (?=
                 # we need to distinguish between tag font and property font
                 font(?!
@@ -659,7 +659,7 @@ patterns:
                     sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
                     thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp)
 
-                    \s*([\s,.#\[]|:[^\s]|(?=\{))
+                    \s*([\s,.#\[]|:[^\s]|(?=\{|$))
 
                 ) | (
                                         # Property can't start with these
