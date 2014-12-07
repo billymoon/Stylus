@@ -1,5 +1,5 @@
 {
-  "cmd": ["stylus", "$file"],
+  "cmd": ["stylus", "-u", "nib", "$file"],
   "file_regex": ".",
   "selector": "source.stylus",
 
@@ -15,17 +15,17 @@
 
   "windows":
   {
-    "cmd": ["stylus.cmd", "$file"]
+    "cmd": ["stylus.cmd", "-u", "nib", "$file"]
   },
 
   "variants": [
     {
       "name": "compress",
-      "cmd": ["stylus", "-c", "$file"],
+      "cmd": ["stylus", "-u", "nib", "-c", "$file"],
 
       "windows":
       {
-        "cmd": ["stylus.cmd", "-c", "$file"]
+        "cmd": ["stylus.cmd", "-u", "nib", "-c", "$file"]
       }
     }
   ]
