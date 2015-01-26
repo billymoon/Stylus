@@ -10,7 +10,7 @@ IMPORTANT: Snippets for CSS properties
 
 Snippets for CSS properties are not provided as part of this package and Emmet or Hayaku packages should be used instead to provide this (and much more) functionality. Both choices are available via Package Control.
 
-If you rather use regular Sublime Text snippets for some reason, then snippets that were previously a part of Stylus package can be installed as new Sublime-Snippets package, which is also avialable via Package Control.
+If you rather use regular Sublime Text snippets for some reason, then snippets that were previously a part of Stylus package can be installed as new Sublime-Snippets package, which is also available via Package Control.
 
 You can learn more about packages mentioned above by following these links:
 
