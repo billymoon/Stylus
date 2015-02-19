@@ -153,8 +153,8 @@ repository:
                     )
                     ((?:                    # units
                         px|pt|ch|cm|mm|in|
-                        r?em|ex|pc|deg|
-                        g?rad|dpi|dpcm|s
+                        r?em|ex|pc|vw|vh|vmin|vmax|deg|
+                        g?rad|turn|dpi|dpcm|dppx|m?s|k?Hz
                     )\b|%)?
                 name: constant.numeric.stylus
 
