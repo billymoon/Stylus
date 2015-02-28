@@ -471,8 +471,10 @@ repository:
             -
                 match: '[:~&gt;]'
                 name: keyword.operator.selector.stylus
-            -   # List of all html (including non-standard) tags based on MDN:
+            -   # List of all HTML tags (including non-standard) based on MDN:
                 # https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+                # List of all SVG tags based on W3C:
+                # http://www.w3.org/TR/SVG/eltindex.html
                 match: |
                     (?x) # multi-line regex definition mode
                     \b(
@@ -488,7 +490,21 @@ repository:
                         plaintext|pre|progress|q|rp|rt|ruby|s|samp|script|section|
                         select|shadow|small|source|spacer|span|strike|strong|style|
                         sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
-                        thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp
+                        thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp|
+                        # SVG elements
+                        altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
+                        animateMotion|animateTransform|circle|clipPath|color-profile|
+                        cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+                        feComponentTransfer|feComposite|feConvolveMatrix|
+                        feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
+                        feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|
+                        feMergeNode|feMorphology|feOffset|fePointLight|
+                        feSpecularLighting|feSpotLight|feTile|feTurbulence|filter|
+                        font-face|font-face-format|font-face-name|font-face-src|
+                        font-face-uri|foreignObject|g|glyph|glyphRef|hkern|image|line|
+                        linearGradient|marker|mask|metadata|missing-glyph|mpath|path|
+                        pattern|polygon|polyline|radialGradient|rect|set|stop|svg|
+                        switch|symbol|text|textPath|tref|tspan|use|view|vkern
                     )\b
                 name: entity.name.tag.stylus
 
@@ -657,7 +673,21 @@ patterns:
                     plaintext|pre|progress|q|rp|rt|ruby|s|samp|script|section|
                     select|shadow|small|source|spacer|span|strike|strong|style|
                     sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|
-                    thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp)
+                    thead|time|title|tr|track|tt|u|ul|var|video|wbr|xmp|
+                    # SVG elements
+                    altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
+                    animateMotion|animateTransform|circle|clipPath|color-profile|
+                    cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+                    feComponentTransfer|feComposite|feConvolveMatrix|
+                    feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
+                    feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|
+                    feMergeNode|feMorphology|feOffset|fePointLight|
+                    feSpecularLighting|feSpotLight|feTile|feTurbulence|filter|
+                    font-face|font-face-format|font-face-name|font-face-src|
+                    font-face-uri|foreignObject|g|glyph|glyphRef|hkern|image|line|
+                    linearGradient|marker|mask|metadata|missing-glyph|mpath|path|
+                    pattern|polygon|polyline|radialGradient|rect|set|stop|svg|
+                    switch|symbol|text|textPath|tref|tspan|use|view|vkern)
 
                     \s*([\s,.#\[]|:[^\s]|(?=\{|$))
 
