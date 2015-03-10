@@ -629,7 +629,7 @@
       <key>function-call</key>
       <dict>
         <key>begin</key>
-        <string>([\w$-]+)\s*(\()</string>
+        <string>([\w$-]+)(\()</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
@@ -1428,7 +1428,6 @@
 
 ^(\s*)          # starts at the beginning of line
 ([\w$-]+)       # identifier (name)
-\s*
 (\()            # start of argument list
 (?=
     .*?
@@ -1477,7 +1476,6 @@
     \s*
     (\+?\s*         # for block mixins
      [\w$-]+)       # identifier (name)
-    \s*
     (\()            # start of argument list
     (?=
         .*?

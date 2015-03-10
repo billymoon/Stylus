@@ -216,6 +216,15 @@ somefunction(a, b = 16px, c = b, d...)
     &_{x}_{y}
       color x if y
 
+// simple function (mixin) definition
+somemixin()
+  color red
+
+// usage of a function (mixin) and value in braces
+a
+  somemixin()
+  margin-bottom (2px / 1)
+
 // built-in functions
 .foo
   test = 5

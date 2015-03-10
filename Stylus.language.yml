@@ -257,7 +257,7 @@ repository:
 
     function-call:
         # Function call (or definition when no curly braces are used)
-        begin: '([\w$-]+)\s*(\()'
+        begin: '([\w$-]+)(\()'
         beginCaptures:
             1: { name: entity.function-name.stylus }
             2: { name: punctuation.definition.parameters.start.stylus }
@@ -580,7 +580,6 @@ patterns:
 
             ^(\s*)          # starts at the beginning of line
             ([\w$-]+)       # identifier (name)
-            \s*
             (\()            # start of argument list
             (?=
                 .*?
@@ -606,7 +605,6 @@ patterns:
                 \s*
                 (\+?\s*         # for block mixins
                  [\w$-]+)       # identifier (name)
-                \s*
                 (\()            # start of argument list
                 (?=
                     .*?
