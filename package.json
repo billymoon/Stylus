@@ -11,7 +11,7 @@
   "private": true,
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-convert": "*",
+    "grunt-convert": "0.1.10",
     "grunt-rename": "*",
     "grunt-contrib-watch": "*",
     "matchdep": "*",
