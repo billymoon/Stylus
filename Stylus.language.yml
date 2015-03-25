@@ -471,11 +471,28 @@ repository:
             -
                 match: '[:~&gt;]'
                 name: keyword.operator.selector.stylus
-            -   # List of all html (including non-standard) tags based on MDN:
+            -   # List of all HTML tags (including non-standard) based on MDN:
                 # https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+                # List of all SVG tags based on W3C:
+                # http://www.w3.org/TR/SVG/eltindex.html
                 match: |
                     (?x) # multi-line regex definition mode
                     \b(
+                        # SVG elements
+                        altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
+                        animateMotion|animateTransform|circle|clipPath|color-profile|
+                        cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+                        feComponentTransfer|feComposite|feConvolveMatrix|
+                        feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
+                        feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|
+                        feMergeNode|feMorphology|feOffset|fePointLight|
+                        feSpecularLighting|feSpotLight|feTile|feTurbulence|filter|
+                        font-face|font-face-format|font-face-name|font-face-src|
+                        font-face-uri|foreignObject|g|glyph|glyphRef|hkern|image|line|
+                        linearGradient|marker|mask|metadata|missing-glyph|mpath|path|
+                        pattern|polygon|polyline|radialGradient|rect|set|stop|svg|
+                        switch|symbol|text|textPath|tref|tspan|use|view|vkern|
+                        # HTML elements
                         a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
                         basefont|bdi|bdo|bgsound|big|blink|blockquote|body|br|button|
                         canvas|caption|center|cite|code|col|colgroup|content|data|
@@ -643,7 +660,23 @@ patterns:
                         ['"][^\]]*$
                     )
                 ) | (
-                    (a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
+                    (
+                    # SVG elements
+                    altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
+                    animateMotion|animateTransform|circle|clipPath|color-profile|
+                    cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+                    feComponentTransfer|feComposite|feConvolveMatrix|
+                    feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
+                    feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|
+                    feMergeNode|feMorphology|feOffset|fePointLight|
+                    feSpecularLighting|feSpotLight|feTile|feTurbulence|filter|
+                    font-face|font-face-format|font-face-name|font-face-src|
+                    font-face-uri|foreignObject|g|glyph|glyphRef|hkern|image|line|
+                    linearGradient|marker|mask|metadata|missing-glyph|mpath|path|
+                    pattern|polygon|polyline|radialGradient|rect|set|stop|svg|
+                    switch|symbol|text|textPath|tref|tspan|use|view|vkern|
+                    # HTML elements
+                    a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
                     basefont|bdi|bdo|bgsound|big|blink|blockquote|body|br|button|
                     canvas|caption|center|cite|code|col|colgroup|data|
                     datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|

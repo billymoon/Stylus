@@ -1224,6 +1224,19 @@
             <key>match</key>
             <string>(?x) # multi-line regex definition mode
 \b(
+    altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
+    animateMotion|animateTransform|circle|clipPath|color-profile|
+    cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+    feComponentTransfer|feComposite|feConvolveMatrix|
+    feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
+    feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|
+    feMergeNode|feMorphology|feOffset|fePointLight|
+    feSpecularLighting|feSpotLight|feTile|feTurbulence|filter|
+    font-face|font-face-format|font-face-name|font-face-src|
+    font-face-uri|foreignObject|g|glyph|glyphRef|hkern|image|line|
+    linearGradient|marker|mask|metadata|missing-glyph|mpath|path|
+    pattern|polygon|polyline|radialGradient|rect|set|stop|svg|
+    switch|symbol|text|textPath|tref|tspan|use|view|vkern|
     a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
     basefont|bdi|bdo|bgsound|big|blink|blockquote|body|br|button|
     canvas|caption|center|cite|code|col|colgroup|content|data|
@@ -1534,7 +1547,21 @@
             ['"][^\]]*$
         )
     ) | (
-        (a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
+        (
+        altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
+        animateMotion|animateTransform|circle|clipPath|color-profile|
+        cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+        feComponentTransfer|feComposite|feConvolveMatrix|
+        feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
+        feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|
+        feMergeNode|feMorphology|feOffset|fePointLight|
+        feSpecularLighting|feSpotLight|feTile|feTurbulence|filter|
+        font-face|font-face-format|font-face-name|font-face-src|
+        font-face-uri|foreignObject|g|glyph|glyphRef|hkern|image|line|
+        linearGradient|marker|mask|metadata|missing-glyph|mpath|path|
+        pattern|polygon|polyline|radialGradient|rect|set|stop|svg|
+        switch|symbol|text|textPath|tref|tspan|use|view|vkern|
+        a|abbr|acronym|address|applet|area|article|aside|audio|b|base|
         basefont|bdi|bdo|bgsound|big|blink|blockquote|body|br|button|
         canvas|caption|center|cite|code|col|colgroup|data|
         datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|
