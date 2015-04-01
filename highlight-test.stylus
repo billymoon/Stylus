@@ -248,3 +248,8 @@ $foo
 .bar
   @extend $foo
   background: #000
+  
+// Whitespace for tag conflicting properties
+  cursor   :   pointer
+  cursor       pointer
+  cursor: pointer
