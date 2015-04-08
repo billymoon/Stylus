@@ -1226,7 +1226,7 @@
 \b(
     altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
     animateMotion|animateTransform|circle|clipPath|color-profile|
-    cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+    defs|desc|ellipse|feBlend|feColorMatrix|
     feComponentTransfer|feComposite|feConvolveMatrix|
     feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
     feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|
@@ -1546,11 +1546,29 @@
             \b\d+(?:\b|px|r?em|%)|
             ['"][^\]]*$
         )
+    ) | # we need to distinguish between tag and property `cursor`
+    cursor(?!
+        \s*[:;]\s
+        |
+        -
+        |
+        .*?
+        (?:
+            (?:url\s*\()|
+            (?:-moz-|-webkit-|-ms-)?
+            (?:auto|default|none|context-menu|help|pointer|progress|
+            wait|cell|crosshair|text|vertical-text|alias|copy|
+            move|no-drop|not-allowed|e-resize|n-resize|ne-resize|
+            nw-resize|s-resize|se-resize|sw-resize|w-resize|
+            ew-resize|ns-resize|nesw-resize|nwse-resize|col-resize|
+            row-resize|all-scroll|zoom-in|zoom-out|grab|grabbing
+            normal|bold|light(er?)|serif|sans|monospace)
+        )
     ) | (
         (
         altGlyph|altGlyphDef|altGlyphItem|animate|animateColor|
         animateMotion|animateTransform|circle|clipPath|color-profile|
-        cursor|defs|desc|ellipse|feBlend|feColorMatrix|
+        defs|desc|ellipse|feBlend|feColorMatrix|
         feComponentTransfer|feComposite|feConvolveMatrix|
         feDiffuseLighting|feDisplacementMap|feDistantLight|feFlood|
         feFuncA|feFuncB|feFuncG|feFuncR|feGaussianBlur|feImage|feMerge|

@@ -249,7 +249,12 @@ $foo
   @extend $foo
   background: #000
   
-// Whitespace for tag conflicting properties
-  cursor   :   pointer
-  cursor       pointer
+// Special treatment for cursor
+.bar
   cursor: pointer
+.bar
+  cursor: pointer
+.bar
+  cursor   :   pointer
+.bar
+  cursor url('zoom.cur')
