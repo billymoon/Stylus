@@ -10,7 +10,7 @@
 
 
 	/*
-		The directory containing your coffee binary. Usually
+		The directory containing your stylus binary. Usually
 		/usr/local/bin or /usr/bin.
 	*/
 	"binDir": "/usr/local/bin",
@@ -26,8 +26,8 @@
 		## Enable compiling to a specific directory.
 		#### Description
 
-		if it is a string like 'some/directory' then `-o some/directory` will be added to `coffee` compiler.
-		if it is false or not string then it will compile your `script.coffee` to the directory it is in.
+		if it is a string like 'some/directory' then `-o some/directory` will be added to `stylus` compiler.
+		if it is false or not string then it will compile your `style.stylus` to the directory it is in.
 
 		#### Example:
 		Directory is relative to the file you are editing if specified such as
@@ -61,7 +61,7 @@
 		So
 			"/home/user/projects/stylus/app.stylus" will compile to "/home/user/projects/first/css/app.css"
 			"/home/user/projects/stylus/models/prod.stylus" will compile to "/home/user/projects/first/css/models/prod.css"
-			"/home/user/projects/stylus/second/coffee/app2.stylus" will compile to "/home/user/projects/second/css/app2.css"
+			"/home/user/projects/stylus/second/stylus/app2.stylus" will compile to "/home/user/projects/second/css/app2.css"
 			"/home/user/projects/main.stylus" will compile to "/home/user/projects/css/main.css"
 
 	*/
