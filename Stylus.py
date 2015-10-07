@@ -103,6 +103,11 @@ class StyluscompileCommand(TextCommand):
         if compress:
             args = ['-c'] + args
 
+        use_autoprefixer = settings_get('useAutoPrefixer', False)
+        if use_autoprefixer is True:
+            print("Using autoprefixer...")
+            args = ['--use', 'autoprefixer-stylus'] + args
+
         # check instance of compile_paths
         if isinstance(compile_paths, dict):
             appendix_len = None

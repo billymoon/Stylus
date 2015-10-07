@@ -43,6 +43,11 @@
 	*/
 	"compress": false,
 
+	/*
+		Enable autoprefixer
+		See https://www.npmjs.com/package/autoprefixer-stylus
+	*/
+	"useAutoPrefixer": false,
 
 	/*
 		## Enable compiling to a specific relative directories.
