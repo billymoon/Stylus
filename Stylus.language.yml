@@ -268,7 +268,7 @@ repository:
             - { include: '#expression' }
         name: meta.function-call.stylus
 
-    iteration: 
+    iteration:
         begin: "(^\s*|\s+)(for)\s+(?=.*?\s+in\s+)"
         beginCaptures:
             2: { name: keyword.control.stylus }
@@ -295,7 +295,7 @@ repository:
             - { include: '#expression' }
 
     media-query-properties:
-        # Simple matching of all valid properties without checking 
+        # Simple matching of all valid properties without checking
         # for a propert format of "name:value" because we only
         # need to highlight the document and not validate it.
         patterns:
@@ -465,7 +465,7 @@ repository:
             - { include: '#interpolation' }
             - { include: '#attribute-selector' }
             - { include: '#pseudo' }
-            - 
+            -
                 match: '\$[\w$-]+\b'
                 name: entity.other.placeholder.stylus
             -
@@ -513,13 +513,9 @@ repository:
                 match: \.[a-zA-Z0-9_-]+
                 name: entity.other.attribute-name.class.stylus
 
-            -   # CSS class
-                match: \.[a-zA-Z0-9_-]+
-                name: entity.other.attribute-name.class.stylus
-
             -   # CSS id
                 match: '#[a-zA-Z0-9_-]+'
-                name: entity.other.attribute-name.class.stylus
+                name: entity.other.attribute-name.id.stylus
 
             -   # Reference to parent selector including custom interpolation
                 match: |
@@ -626,7 +622,7 @@ patterns:
                 (?=
                     .*?
                     \)\s*;?\s*  # if there are only spaces and semicolons
-                    $|;         # then this a 
+                    $|;         # then this a
                 )
             )
         beginCaptures:
@@ -748,7 +744,7 @@ patterns:
             )
         patterns:
             - { include: '#comma' }
-            -   # for keyframe animation 
+            -   # for keyframe animation
                 match: '\d+(\.\d+)?%|from|to'
                 name: entity.other.animation-keyframe.stylus
             - { include: '#selector-components' }

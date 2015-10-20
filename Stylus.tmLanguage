@@ -1263,15 +1263,9 @@
           </dict>
           <dict>
             <key>match</key>
-            <string>\.[a-zA-Z0-9_-]+</string>
-            <key>name</key>
-            <string>entity.other.attribute-name.class.stylus</string>
-          </dict>
-          <dict>
-            <key>match</key>
             <string>#[a-zA-Z0-9_-]+</string>
             <key>name</key>
-            <string>entity.other.attribute-name.class.stylus</string>
+            <string>entity.other.attribute-name.id.stylus</string>
           </dict>
           <dict>
             <key>match</key>
@@ -1493,7 +1487,7 @@
     (?=
         .*?
         \)\s*;?\s*  # if there are only spaces and semicolons
-        $|;         # then this a 
+        $|;         # then this a
     )
 )
 </string>
