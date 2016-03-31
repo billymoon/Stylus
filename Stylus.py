@@ -78,7 +78,10 @@ def _run(cmd, args=[], source="", cwd=None, env=None):
 def isStylus(view=None):
     if view is None:
         view = sublime.active_window().active_view()
-    return 'source.stylus' in view.scope_name(0)
+    correct_scope = False
+    for region in view.sel():
+        correct_scope = correct_scope or ('source.stylus' in view.scope_name(region.b))
+    return correct_scope
 
 
 
