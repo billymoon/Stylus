@@ -1,6 +1,6 @@
 /**
  * This file is compiled based on offical documentation at
- * http://learnboost.github.io/stylus/ to test highlighting
+ * http://stylus-lang.com/docs/ to test highlighting
  */
 
 // @at-rules
@@ -19,7 +19,7 @@
   50% {
     background red
   }
-  to { 
+  to {
     background: yellow;
   }
 }
@@ -35,7 +35,7 @@
 a { color: red; top: 0; } b { color: #fff; } i { color: #fff; }
 
 // Colors
-body { 
+body {
   color: #fff;
   color: #ffffff;
   color: #fff4;
@@ -43,8 +43,10 @@ body {
   color: rgb(100%, 100%, 50%);
   color: rgb(23, 23, 23);
   color: rgba(23, 23, 23, 0.4);
+  color: rgba(#c33, 0.4);
   color: hsl(23, 23, 23);
   color: hsla(23, 23, 23, 0.4);
+  color: hsla(#fff, 0.4);
 }
 
 // Properties
@@ -148,7 +150,7 @@ font .a32
 
 // Multiple properties separated by semicolon
 header
-  font-size 10px; left 15px; 
+  font-size 10px; left 15px;
 
 // Ambigious property / selector
 // when with comma should be recognized as a selector
@@ -209,7 +211,7 @@ a
 // Function definition and control structures
 somefunction(a, b = 16px, c = b, d...)
   if c
-    top b 
+    top b
   else
     return a
   for x, y in somedictionary
@@ -248,7 +250,7 @@ $foo
 .bar
   @extend $foo
   background: #000
-  
+
 // Special treatment for cursor
 .bar
   cursor: pointer

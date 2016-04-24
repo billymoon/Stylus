@@ -182,16 +182,12 @@ repository:
                             (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\s*(,)\s*)
                             (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\s*(,)\s*)
                             (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\b)
-                            # opacity if present
-                            (?:\s*(,)\s*((0?\.[0-9]+)|[0-1]))?
                         captures:
                             1: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.red.stylus }
                             2: { name: punctuation.delimiter.comma.stylus }
                             3: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.green.stylus }
                             4: { name: punctuation.delimiter.comma.stylus }
                             5: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus }
-                            6: { name: punctuation.delimiter.comma.stylus }
-                            7: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.alpha.stylus }
                     -
                         # percentages
                         match: |
@@ -208,6 +204,17 @@ repository:
                             3: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.green.stylus }
                             4: { name: punctuation.delimiter.comma.stylus }
                             5: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus }
+                    -
+                        # opacity
+                        match: |
+                            (?x) # multi-line regex definition mode
+                            # opacity if present
+                            (?:\s*(,)\s*((0?\.[0-9]+)|[0-1]))?
+                        captures:
+                            1: { name: punctuation.delimiter.comma.stylus }
+                            2: { name: constant.other.color.rgb-value.stylus constant.other.color.rgb-value.alpha.stylus }
+                    - { include: '#numeric-values' }
+
             - { include: '#numeric-values' }
 
     comma:

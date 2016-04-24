@@ -397,7 +397,6 @@
 (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\s*(,)\s*)
 (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\s*(,)\s*)
 (?:0*((?:1?[0-9]{1,2})|(?:2(?:[0-4][0-9]|5[0-5])))\b)
-(?:\s*(,)\s*((0?\.[0-9]+)|[0-1]))?
 </string>
                 <key>captures</key>
                 <dict>
@@ -425,16 +424,6 @@
                   <dict>
                     <key>name</key>
                     <string>constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus</string>
-                  </dict>
-                  <key>6</key>
-                  <dict>
-                    <key>name</key>
-                    <string>punctuation.delimiter.comma.stylus</string>
-                  </dict>
-                  <key>7</key>
-                  <dict>
-                    <key>name</key>
-                    <string>constant.other.color.rgb-value.stylus constant.other.color.rgb-value.alpha.stylus</string>
                   </dict>
                 </dict>
               </dict>
@@ -476,6 +465,29 @@
                     <string>constant.other.color.rgb-value.stylus constant.other.color.rgb-value.blue.stylus</string>
                   </dict>
                 </dict>
+              </dict>
+              <dict>
+                <key>match</key>
+                <string>(?x) # multi-line regex definition mode
+(?:\s*(,)\s*((0?\.[0-9]+)|[0-1]))?
+</string>
+                <key>captures</key>
+                <dict>
+                  <key>1</key>
+                  <dict>
+                    <key>name</key>
+                    <string>punctuation.delimiter.comma.stylus</string>
+                  </dict>
+                  <key>2</key>
+                  <dict>
+                    <key>name</key>
+                    <string>constant.other.color.rgb-value.stylus constant.other.color.rgb-value.alpha.stylus</string>
+                  </dict>
+                </dict>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#numeric-values</string>
               </dict>
             </array>
           </dict>
