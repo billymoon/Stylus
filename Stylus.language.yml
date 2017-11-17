@@ -527,9 +527,9 @@ repository:
             -   # Reference to parent selector including custom interpolation
                 match: |
                     (?x)            # multi-line regex definition mode
-                    ([\w\d_-]+)?    # matching any word right before &
-                    (&amp;)         # & itself, escaped because of plist
-                    ([\w\d_-]+)?    # matching any word right after &
+                    ([\w\d_-]+)?    # matching any word right before &amp;
+                    (&amp;)         # &amp; itself, escaped because of plist
+                    ([\w\d_-]+)?    # matching any word right after &amp;
                 captures:
                     1: { name: entity.other.attribute-name.stylus }
                     2: { name: variable.language.stylus }
@@ -744,9 +744,9 @@ patterns:
 
                 ) | (                   # Reference to parent
 
-                    ([\w\d_-]+)?        # matching any word right before &
-                    (&amp;)             # & itself, escaped because of plist
-                    ([\w\d_-]+)?        # matching any word right after &
+                    ([\w\d_-]+)?        # matching any word right before &amp;
+                    (&amp;)             # &amp; itself, escaped because of plist
+                    ([\w\d_-]+)?        # matching any word right after &amp;
                 )
             )
         patterns:
