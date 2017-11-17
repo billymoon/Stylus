@@ -1282,9 +1282,9 @@
           <dict>
             <key>match</key>
             <string>(?x)            # multi-line regex definition mode
-([\w\d_-]+)?    # matching any word right before &
-(&amp;)         # & itself, escaped because of plist
-([\w\d_-]+)?    # matching any word right after &
+([\w\d_-]+)?    # matching any word right before &amp;
+(&amp;)         # &amp; itself, escaped because of plist
+([\w\d_-]+)?    # matching any word right after &amp;
 </string>
             <key>captures</key>
             <dict>
@@ -1628,9 +1628,9 @@
 
     ) | (                   # Reference to parent
 
-        ([\w\d_-]+)?        # matching any word right before &
-        (&amp;)             # & itself, escaped because of plist
-        ([\w\d_-]+)?        # matching any word right after &
+        ([\w\d_-]+)?        # matching any word right before &amp;
+        (&amp;)             # &amp; itself, escaped because of plist
+        ([\w\d_-]+)?        # matching any word right after &amp;
     )
 )
 </string>
