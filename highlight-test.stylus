@@ -130,6 +130,11 @@ div
 body.someclass#someid
   font normal 18px/30px OpenSans, Verdana, sans-serif
 
+// Custom Properties
+html
+  --foo 12px
+  font var(--foo)
+
 // Multiple selectors separated by comma
 textarea, input
   border 1px solid #fff

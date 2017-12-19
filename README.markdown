@@ -57,7 +57,7 @@ Please use [GitHub Issue Tracker](https://github.com/billymoon/Stylus/issues) to
 ## Maintainers
 
  * [Billy Moon](https://github.com/billymoon) ([billy@itaccess.org](mailto:billy@itaccess.org))
- * [Dmitriy Kubyshkin](https://github.com/grassator) ([dmitriy@kubyshkin.ru](mailto:dmitriy@kubyshkin.ru))
+ * [Dmitriy Kubyshkin](https://github.com/grassator) ([dmitriy@kubyshkin.name](mailto:dmitriy@kubyshkin.name))
 
 ## Thanks
 

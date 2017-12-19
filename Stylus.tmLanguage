@@ -1550,6 +1550,7 @@
         (?:
             \/|normal|bold|light(er?)|serif|sans|monospace|
             \b\d+(?:\b|px|r?em|%)|
+            var\s*\(|
             ['"][^\]]*$
         )
     ) | # we need to distinguish between tag and property `cursor`
